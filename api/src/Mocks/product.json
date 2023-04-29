@@ -1,0 +1,8 @@
+{
+  "id": 1234,
+  "name": "Producto A",
+  "description": "Este es un producto de ejemplo",
+  "image_url": "https://ejemplo.com/imagen.jpg",
+  "price": 10.99,
+  "brand": "Marca A"
+}
