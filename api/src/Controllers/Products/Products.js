@@ -6,7 +6,6 @@ const ERROR = "Error @ Controllers/Products/Products.js";
 // GET (ALL) PRODUCTS
 const getProducts = async () => {
   try {
-    console.log("product all");
     const products = await Product.findAll({
       order: ["name"],
       attributes: ["id", "name", "description", "image_url", "price"],
@@ -112,24 +111,11 @@ const getProductsById = async (id) => {
 
 const updateProduct = async (productId, data) => {
   try {
-    let product = null;
-    if (productId && typeof productId === "number") {
-      // Buscar el producto por su ID
-      product = await Product.findByPk(productId);
-    } else if (productId && typeof productId === "string") {
-      // Buscar el producto por su nombre
-      const brandId = data.brand && data.brand.id;
-      const whereClause = { name: productId };
-      if (brandId) {
-        whereClause.brandId = brandId;
-      }
-      product = await Product.findOne({ where: whereClause });
-    }
+    // Buscar el producto por su ID
+    const product = await Product.findByPk(productId);
 
     if (!product) {
-      throw new Error(
-        `No se encontró un producto con el ID o nombre '${productId}'`
-      );
+      throw new Error(`No se encontró un producto con el ID '${productId}'`);
     }
 
     // Actualizar el producto con los nuevos datos
@@ -169,14 +155,7 @@ const updateProduct = async (productId, data) => {
     // Guardar los cambios en la base de datos
     await product.save();
 
-    // Comprobar si productId es un número o una cadena
-    let message = "";
-    if (typeof productId === "number") {
-      message = `Producto con ID '${productId}' actualizado correctamente`;
-    } else {
-      message = `Producto con nombre '${productId}' actualizado correctamente`;
-    }
-
+    const message = `Producto con ID '${productId}' actualizado correctamente`;
     return message;
   } catch (e) {
     console.error(`${ERROR}, updateProduct --→ ${e}`);
@@ -203,30 +182,17 @@ const getProductsByName = async (name) => {
 };
 
 // DELETE PRODUCT BY ID/NAME
-const deleteProduct = async (productIdOrName) => {
+const deleteProduct = async (productId) => {
   try {
-    let productToDelete;
+    const productToDelete = await Product.findByPk(productId);
 
-    // Verificar si el argumento es un número (ID) o una cadena (nombre)
-    if (typeof productIdOrName === "number") {
-      // Buscar el producto por ID
-      productToDelete = await Product.findByPk(productIdOrName);
-    } else if (typeof productIdOrName === "string") {
-      // Buscar el producto por nombre
-      productToDelete = await Product.findOne({
-        where: { name: productIdOrName },
-      });
-    }
-
-    // Verificar si el producto existe
     if (!productToDelete) {
-      throw new Error(`El producto '${productIdOrName}' no existe`);
+      throw new Error(`No se encontró un producto con el ID '${productId}'`);
     }
 
-    // Eliminar el producto
     await productToDelete.destroy();
 
-    return `Producto '${productToDelete.name}' eliminado correctamente`;
+    return `Producto con ID '${productId}' eliminado correctamente`;
   } catch (e) {
     console.error(`${ERROR}, deleteProduct --→ ${e}`);
     return e.message;

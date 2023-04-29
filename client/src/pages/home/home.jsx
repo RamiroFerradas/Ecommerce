@@ -1,5 +1,13 @@
-import React from "react";
+import Products from "../Home/Products";
+import Sidebar from "../Home/Sidebar";
 
-export default function home() {
-  return <div>homeeeeee</div>;
-}
+const Home = () => {
+  return (
+    <div className="flex">
+      <Sidebar />
+      <Products />
+    </div>
+  );
+};
+
+export default Home;
