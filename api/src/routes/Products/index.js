@@ -54,7 +54,7 @@ router.post("/", async (req, res) => {
 });
 module.exports = router;
 
-// // MODIFY AIRLINE
+// MODIFY PRODUCT
 router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -64,7 +64,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// DELETE AIRLINE
+// DELETE PRODUCT
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;

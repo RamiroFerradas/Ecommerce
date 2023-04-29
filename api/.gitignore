@@ -110,3 +110,5 @@ package-lock.json
 .env.local
 
 seeders/
+
+auth.js
