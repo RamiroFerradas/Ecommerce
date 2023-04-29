@@ -8,9 +8,9 @@ const authMiddleware = require("../auth.js");
 const router = Router();
 
 // Use the authMiddleware to protect the '/products' route
-router.use("/products", authMiddleware, productsRoute);
+router.use("/products", productsRoute);
 
 // Use the authMiddleware to protect the '/brands' route
-router.use("/brands", authMiddleware, brandRoute);
+router.use("/brands", brandRoute);
 
 module.exports = router;

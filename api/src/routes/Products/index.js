@@ -8,6 +8,7 @@ const {
   deleteProduct,
   updateProduct,
 } = require("../../Controllers/Products/Products.js");
+const authMiddleware = require("../../auth.js");
 
 const router = Router();
 
@@ -45,17 +46,16 @@ router.get("/:id", async (req, res) => {
 
 // ---------- POST PRODUCT ----------
 
-router.post("/", async (req, res) => {
+router.post("/", authMiddleware, async (req, res) => {
   try {
     res.json(await insertProduct(req.body));
   } catch (e) {
     res.status(404).send(ERROR, e);
   }
 });
-module.exports = router;
 
 // MODIFY PRODUCT
-router.put("/:id", async (req, res) => {
+router.put("/:id", authMiddleware, async (req, res) => {
   try {
     const { id } = req.params;
     res.json(await updateProduct(id, req.body));
@@ -65,7 +65,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // DELETE PRODUCT
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authMiddleware, async (req, res) => {
   try {
     const { id } = req.params;
     res.json(await deleteProduct(id, req.body));
@@ -73,3 +73,5 @@ router.delete("/:id", async (req, res) => {
     res.status(404).send(ERROR, e);
   }
 });
+
+module.exports = router;

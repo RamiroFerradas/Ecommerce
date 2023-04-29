@@ -6,6 +6,7 @@ const {
   deleteBrand,
   insertBrand,
 } = require("../../Controllers/Brands");
+const authMiddleware = require("../../auth");
 
 const router = Router();
 
@@ -50,7 +51,7 @@ router.get("/:idOrName", async (req, res) => {
 });
 
 // ---------- POST BRAND ----------
-router.post("/", async (req, res) => {
+router.post("/", authMiddleware, async (req, res) => {
   try {
     res.json(await insertBrand(req.body));
   } catch (e) {
@@ -59,7 +60,7 @@ router.post("/", async (req, res) => {
 });
 
 // ---------- UPDATE BRAND ----------
-router.put("/:idOrName", async (req, res) => {
+router.put("/:idOrName", authMiddleware, async (req, res) => {
   try {
     const { idOrName } = req.params;
     res.json(await updateBrand(idOrName, req.body));
@@ -69,7 +70,7 @@ router.put("/:idOrName", async (req, res) => {
 });
 
 // ---------- DELETE BRAND ----------
-router.delete("/:idOrName", async (req, res) => {
+router.delete("/:idOrName", authMiddleware, async (req, res) => {
   try {
     const { idOrName } = req.params;
     res.json(await deleteBrand(idOrName));
