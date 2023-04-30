@@ -6,6 +6,7 @@ const url = `/brands`;
 const initialState = {
   allBrands: [],
   loading: false,
+  selectedBrands: [],
 };
 
 export const brandsSlice = createSlice({
@@ -19,10 +20,21 @@ export const brandsSlice = createSlice({
     setLoading: (state) => {
       state.loading = true;
     },
+    toggleBrandSelection: (state, action) => {
+      const brand = action.payload;
+      const index = state.selectedBrands.indexOf(brand);
+
+      if (index === -1) {
+        state.selectedBrands.push(brand);
+      } else {
+        state.selectedBrands.splice(index, 1);
+      }
+    },
   },
 });
 
-export const { setAllBrands, setLoading } = brandsSlice.actions;
+export const { setAllBrands, setLoading, toggleBrandSelection } =
+  brandsSlice.actions;
 export default brandsSlice.reducer;
 
 export const getBrands = () => async (dispatch) => {

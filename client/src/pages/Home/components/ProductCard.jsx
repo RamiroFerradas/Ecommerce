@@ -1,6 +1,10 @@
 import React from "react";
+import { useCart } from "../../../hooks/useCart";
 
 const ProductCard = ({ product, handleProductSelect }) => {
+  const { itemExists, handleAddToCart, handleRemoveFromCart } =
+    useCart(product);
+
   return (
     <div
       onClick={() => handleProductSelect(product)}
@@ -18,8 +22,16 @@ const ProductCard = ({ product, handleProductSelect }) => {
         <p className="text-gray-600">{product.description}</p>
         <div className="mt-4 flex items-center justify-between">
           <p className="font-bold text-gray-700">${product.price}</p>
-          <button className="bg-gray-800 text-white px-3 py-2 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
-            Add to Cart
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              itemExists
+                ? handleRemoveFromCart(product)
+                : handleAddToCart(product);
+            }}
+            className="bg-gray-800 text-white px-3 py-2 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-gray-700"
+          >
+            {itemExists ? `Remover del carro` : `Agregar al carro`}
           </button>
         </div>
       </div>

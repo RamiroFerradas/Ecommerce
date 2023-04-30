@@ -7,7 +7,8 @@ export default function useFetchProducts() {
   const { allProducts, loading } = useSelector(({ products }) => products);
 
   useEffect(() => {
-    !allProducts.length && dispatch(getProducts());
-  }, [allProducts.length, dispatch]);
+    dispatch(getProducts());
+  }, [dispatch]);
+
   return { allProducts, loading };
 }

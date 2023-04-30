@@ -1,6 +1,5 @@
-import Products from "../Home/Products";
-import Sidebar from "../Home/Sidebar";
-import ProductModal from "./ProductModal";
+import Products from "./Products";
+import Sidebar from "./Sidebar";
 
 const Home = () => {
   return (

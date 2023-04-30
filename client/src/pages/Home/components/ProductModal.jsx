@@ -1,12 +1,15 @@
 import React from "react";
+import { stopPropagation } from "../../../utils/stopPropagation";
+import { useCart } from "../../../hooks/useCart";
 
 const ProductModal = ({ product, setSelectedProduct }) => {
-  const stopPropagation = (e) => {
-    e.stopPropagation();
-  };
   const handleModalClose = () => {
     setSelectedProduct(null);
   };
+
+  const { itemExists, handleAddToCart, handleRemoveFromCart } =
+    useCart(product);
+
   return (
     <div onClick={handleModalClose}>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none h-screen">
@@ -25,16 +28,39 @@ const ProductModal = ({ product, setSelectedProduct }) => {
             </button>
 
             <div className="flex p-3 h-[28rem]">
-              <div className="w-1/2 relative justify-center items-center flex ">
+              <div className="w-1/2 relative justify-center items-center flex">
+                {/* <ReactImageMagnify
+                  {...{
+                    smallImage: {
+                      alt: "Wristwatch by Ted Baker London",
+                      isFluidWidth: true,
+                      src: product,
+                    },
+                    largeImage: {
+                      src: product,
+                      width: 1200,
+                      height: 1800,
+                    },
+                  }}
+                /> */}
+
                 <img
                   src={product.image_url}
                   alt={product.name}
                   className="object-cover h-80"
                 />
               </div>
+
               <div className="w-1/2 p-4 bg-gray-100 border-gray-300 border rounded-md">
                 <p className="text-2xl font-semibold mb-4">{product.name}</p>
-                <p className="text-md mb-5">Marca: {product.brand.name}</p>
+                <div className="flex items-center mb-5">
+                  <img
+                    src={product.brand.logo_url}
+                    alt={product.brand.name}
+                    className="w-10 h-10 object-cover rounded-full mr-2"
+                  />
+                  <p className="text-md"> {product.brand.name}</p>
+                </div>
                 <p className="text-xl font-semibold mb-1">Descripción</p>
 
                 <p className="text-slate-500 text-lg leading-relaxed">
@@ -45,8 +71,16 @@ const ProductModal = ({ product, setSelectedProduct }) => {
 
             <div className="flex items-center gap-10 p-6 border-t border-solid border-slate-200 ">
               <p className="text-3xl font-extralight">${product.price}</p>
-              <button className="bg-gray-800 text-white px-3 py-2 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
-                Agregar al carrito
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  itemExists
+                    ? handleRemoveFromCart(product)
+                    : handleAddToCart(product);
+                }}
+                className="bg-gray-800 text-white px-3 py-2 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-gray-700"
+              >
+                {itemExists ? `Remover del carro` : `Agregar al carro`}
               </button>
             </div>
           </div>

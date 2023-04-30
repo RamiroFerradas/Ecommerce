@@ -8,7 +8,14 @@ const getProducts = async () => {
   try {
     const products = await Product.findAll({
       order: ["name"],
-      attributes: ["id", "name", "description", "image_url", "price"],
+      attributes: [
+        "id",
+        "name",
+        "description",
+        "image_url",
+        "price",
+        "category",
+      ],
       include: {
         model: Brand,
         attributes: ["id", "name", "logo_url"],
@@ -30,10 +37,10 @@ const getProducts = async () => {
 // POST PRODUCT
 
 const insertProduct = async (data) => {
-  let { name, description, image_url, price, brand } = data;
+  let { name, description, image_url, price, brand, category } = data;
 
   try {
-    if (!name || !description || !image_url || !price || !brand) {
+    if (!name || !description || !image_url || !price || !brand || !category) {
       throw new Error("Faltan datos requeridos para crear el producto");
     }
 
@@ -79,6 +86,7 @@ const insertProduct = async (data) => {
       description,
       image_url,
       price,
+      category,
       brandId: foundOrCreatedBrand.id,
     });
 
@@ -94,6 +102,19 @@ const getProductsById = async (id) => {
   try {
     const productId = await Product.findOne({
       where: { id },
+      attributes: [
+        "id",
+        "name",
+        "description",
+        "image_url",
+        "price",
+        "category",
+      ],
+      include: {
+        model: Brand,
+        attributes: ["id", "name", "logo_url"],
+        as: "brand",
+      },
     });
     if (productId) {
       return productId;
@@ -119,7 +140,7 @@ const updateProduct = async (productId, data) => {
     }
 
     // Actualizar el producto con los nuevos datos
-    const { name, description, image_url, price, brand } = data;
+    const { name, description, image_url, price, brand, category } = data;
     if (name) {
       product.name = name;
     }
@@ -131,6 +152,9 @@ const updateProduct = async (productId, data) => {
     }
     if (price) {
       product.price = price;
+    }
+    if (category) {
+      product.category = category;
     }
     if (brand) {
       // Buscar la marca existente o crear una nueva
