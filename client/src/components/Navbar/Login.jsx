@@ -2,11 +2,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const { isLoading, isAuthenticated, loginWithRedirect, logout, user } =
     useAuth0();
   const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -38,7 +40,7 @@ export default function Login() {
             <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl z-10">
               <button
                 className="block px-4 py-2 text-gray-800 hover:bg-blue-600/75 hover:text-white w-full transition duration-10 ease-in-out"
-                onClick={() => console.log("Ir al panel de administración")}
+                onClick={() => navigate(`/admin`)}
               >
                 Panel de administración
               </button>

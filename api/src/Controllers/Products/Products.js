@@ -40,11 +40,12 @@ const insertProduct = async (data) => {
   let { name, description, image_url, price, brand, category } = data;
 
   try {
-    if (!name || !description || !image_url || !price || !brand || !category) {
+    if (!name || !description || !image_url || !price || !brand) {
       throw new Error("Faltan datos requeridos para crear el producto");
     }
 
-    if (typeof price !== "number" || price <= 0) {
+    const parsedPrice = parseInt(price, 10);
+    if (isNaN(parsedPrice) || parsedPrice <= 0) {
       throw new Error("El precio debe ser un número positivo");
     }
 
@@ -85,7 +86,7 @@ const insertProduct = async (data) => {
       name,
       description,
       image_url,
-      price,
+      price: Number(price),
       category,
       brandId: foundOrCreatedBrand.id,
     });

@@ -44,6 +44,25 @@ export const productsSlice = createSlice({
         );
       }
     },
+    sortProducts: (state, action) => {
+      const { alphabetically, price } = action.payload;
+
+      if (alphabetically === "a-z") {
+        state.allProducts = state.allProducts.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+      } else if (alphabetically === "z-a") {
+        state.allProducts = state.allProducts.sort((a, b) =>
+          b.name.localeCompare(a.name)
+        );
+      } else if (price === "price-high") {
+        state.allProducts = state.allProducts.sort((a, b) => b.price - a.price);
+      } else if (price === "price-low") {
+        state.allProducts = state.allProducts.sort((a, b) => a.price - b.price);
+      } else {
+        state.allProducts = state.auxProducts;
+      }
+    },
   },
 });
 
@@ -52,8 +71,14 @@ export const {
   setLoading,
   searchProducts,
   filterProductsByBrand,
+  sortProducts,
 } = productsSlice.actions;
 export default productsSlice.reducer;
+
+const headers = {
+  "Content-Type": "application/json",
+  Authorization: "my-secret-token",
+};
 
 export const getProducts = () => async (dispatch) => {
   try {
@@ -63,5 +88,41 @@ export const getProducts = () => async (dispatch) => {
   } catch (error) {
     console.error(error.message);
     dispatch(setLoading()); // Error de solicitud
+  }
+};
+
+export const addProduct = (productData) => async (dispatch) => {
+  try {
+    const res = await axios.post(url, productData, {
+      headers,
+    });
+    console.log(res.data);
+    dispatch(getProducts());
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+export const updateProduct = (id, updatedProductData) => async (dispatch) => {
+  try {
+    const res = await axios.put(`${url}/${id}`, updatedProductData, {
+      headers,
+    });
+    console.log(res.data);
+    dispatch(getProducts());
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+export const deleteProduct = (id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`${url}/${id}`, {
+      headers,
+    });
+    console.log(res.data);
+    dispatch(getProducts());
+  } catch (error) {
+    console.error(error.message);
   }
 };

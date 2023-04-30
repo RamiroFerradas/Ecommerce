@@ -19,6 +19,7 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "no-unused-vars": "warn",
-    "no-self-assign": "warn"
+    "no-self-assign": "warn",
+    "react/prop-types": "off"
   }
 }

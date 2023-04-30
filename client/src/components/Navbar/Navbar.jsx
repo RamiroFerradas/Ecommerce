@@ -1,25 +1,20 @@
-import React, { useEffect, useState } from "react";
 import CartIcon from "./CartIcon";
-import { useDispatch } from "react-redux";
-import { getProducts, searchProducts } from "../../redux/productsSlice";
 import useSearch from "../../hooks/useSearch";
 import Login from "./Login";
+import logoSD from "../../assets/images/logo.jpeg";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const { handleInputChangue, input } = useSearch();
   return (
     <nav className="bg-blue-100 border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center mx-auto p-4 justify-between md:order-1">
-        <a href="https://flowbite.com/" className="flex items-center">
-          <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            className="h-8 mr-3"
-            alt="Flowbite Logo"
-          />
+        <NavLink to="/" className="flex items-center">
+          <img src={logoSD} className="h-8 mr-3" alt="Flowbite Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             Storydots
           </span>
-        </a>
+        </NavLink>
 
         <div className="flex  items-center md:order-2">
           <button
