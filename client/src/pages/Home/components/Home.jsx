@@ -1,5 +1,5 @@
-import Products from "./Products";
-import Sidebar from "./Sidebar";
+import Sidebar from "../components/Sidebar.jsx";
+import Products from "../components/Products.jsx";
 
 const Home = () => {
   return (

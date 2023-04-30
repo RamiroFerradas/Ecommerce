@@ -14,6 +14,8 @@ const baseURL = import.meta.env.DEV
   : import.meta.env.VITE_REACT_APP_API;
 axios.defaults.baseURL = baseURL;
 
+console.log(import.meta.env.VITE_REACT_APP_API);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
