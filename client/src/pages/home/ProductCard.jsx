@@ -1,9 +1,12 @@
 import React from "react";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, handleProductSelect }) => {
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-      <div className="relative pb-48 overflow-hidden">
+    <div
+      onClick={() => handleProductSelect(product)}
+      className="p-3 cursor-pointer bg-white hover:bg-gray-200 rounded-lg shadow-lg overflow-hidden"
+    >
+      <div className="relative pb-48 overflow-hidden rounded-md">
         <img
           className="absolute h-full w-full object-cover"
           src={product.image_url}
