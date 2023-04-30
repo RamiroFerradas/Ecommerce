@@ -8,11 +8,7 @@ export default function useSearch() {
   const [input, setinput] = useState("");
 
   useEffect(() => {
-    if (input !== "") {
-      dispatch(searchProducts(input));
-    } else {
-      dispatch(getProducts());
-    }
+    dispatch(searchProducts(input));
   }, [input]);
 
   const handleInputChangue = (e) => {

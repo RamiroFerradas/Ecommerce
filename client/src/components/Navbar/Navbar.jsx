@@ -3,6 +3,7 @@ import CartIcon from "./CartIcon";
 import { useDispatch } from "react-redux";
 import { getProducts, searchProducts } from "../../redux/productsSlice";
 import useSearch from "../../hooks/useSearch";
+import Login from "./Login";
 
 export default function Navbar() {
   const { handleInputChangue, input } = useSearch();
@@ -41,7 +42,7 @@ export default function Navbar() {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <span className="sr-only">Search</span>
+            <span className="sr-only">Buscar</span>
           </button>
           <div className="relative hidden md:block">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -70,8 +71,9 @@ export default function Navbar() {
             />
           </div>
         </div>
-        <div className="md:order-3">
+        <div className="md:order-3 flex items-center justify-center gap-3 overflow-hidde h-12">
           <CartIcon />
+          <Login />
         </div>
       </div>
     </nav>

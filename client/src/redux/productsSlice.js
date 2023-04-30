@@ -24,11 +24,15 @@ export const productsSlice = createSlice({
     },
     searchProducts: (state, action) => {
       const searchTerm = action.payload.toLowerCase();
-      state.allProducts = state.allProducts.filter(
-        (product) =>
-          product.name.toLowerCase().includes(searchTerm) ||
-          product.description.toLowerCase().includes(searchTerm)
-      );
+      if (searchTerm === "") {
+        state.allProducts = state.auxProducts;
+      } else {
+        state.allProducts = state.allProducts.filter(
+          (product) =>
+            product.name.toLowerCase().includes(searchTerm) ||
+            product.description.toLowerCase().includes(searchTerm)
+        );
+      }
     },
     filterProductsByBrand: (state, action) => {
       const selectedBrands = action.payload;
