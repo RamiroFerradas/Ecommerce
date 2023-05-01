@@ -3,8 +3,12 @@ import useSearch from "../../hooks/useSearch";
 import Login from "./Login";
 import logoSD from "../../assets/images/logo.jpeg";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import UserMenu from "./userMenu";
 
 export default function Navbar() {
+  const [showMenu, setShowMenu] = useState(false);
+
   const { handleInputChangue, input } = useSearch();
   return (
     <nav className="bg-blue-100 border-gray-200 dark:bg-gray-900">
@@ -68,7 +72,7 @@ export default function Navbar() {
         </div>
         <div className="md:order-3 flex items-center justify-center gap-3 overflow-hidde h-12">
           <CartIcon />
-          <Login />
+          <Login setShowMenu={setShowMenu} showMenu={showMenu} />
         </div>
       </div>
     </nav>

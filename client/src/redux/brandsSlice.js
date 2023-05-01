@@ -37,19 +37,55 @@ export const { setAllBrands, setLoading, toggleBrandSelection } =
   brandsSlice.actions;
 export default brandsSlice.reducer;
 
+const headers = {
+  "Content-Type": "application/json",
+  Authorization: "my-secret-token",
+};
+
 export const getBrands = () => async (dispatch) => {
   try {
-    dispatch(setLoading()); // Inicio de carga
-    const res = await axios(url, {
-      // headers: {
-      //   "Content-Type": "application/json",
-      //   Authorization: "my-secret-token",
-      // },
-    });
+    dispatch(setLoading());
+    const res = await axios(url);
 
-    dispatch(setAllBrands(res.data)); // Solicitud exitosa
+    dispatch(setAllBrands(res.data));
   } catch (error) {
     console.error(error.message);
-    dispatch(setLoading()); // Error de solicitud
+    dispatch(setLoading());
+  }
+};
+
+export const addBrand = (brandData) => async (dispatch) => {
+  try {
+    const res = await axios.post(url, brandData, {
+      headers,
+    });
+    console.log(res.data);
+    dispatch(getBrands());
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+export const updateBrand = (id, updatedBrandData) => async (dispatch) => {
+  try {
+    const res = await axios.put(`${url}/${id}`, updatedBrandData, {
+      headers,
+    });
+    console.log(res.data);
+    dispatch(getBrands());
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+export const deleteBrand = (id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`${url}/${id}`, {
+      headers,
+    });
+    console.log(res.data);
+    dispatch(getBrands());
+  } catch (error) {
+    console.error(error.message);
   }
 };

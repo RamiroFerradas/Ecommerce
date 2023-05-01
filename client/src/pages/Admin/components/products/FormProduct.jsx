@@ -1,8 +1,11 @@
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addProduct, updateProduct } from "../../../redux/productsSlice";
+import { addProduct, updateProduct } from "../../../../redux/productsSlice";
 
-export default function FormProduct({ productEditSelected, closeModal }) {
+export default function FormProduct({
+  productEditSelected,
+  closeModalFormProducts,
+}) {
   const dispatch = useDispatch();
   const [productData, setProductData] = useState({
     name: productEditSelected ? productEditSelected.name : "",
@@ -54,17 +57,17 @@ export default function FormProduct({ productEditSelected, closeModal }) {
     } else {
       dispatch(updateProduct(productEditSelected.id, productData));
     }
-    closeModal();
+    closeModalFormProducts();
   };
 
   return (
     <div
-      className="rounded-3xl fixed top-6 left-80 inset-0 z-40 bg-black/80 backdrop-blur-xs h-[90vh] w-[50vw] overflow-x-hidden overflow-y-auto scrollbar-auto-hide"
+      className="rounded-3xl fixed m-auto inset-0 bg-black/80 backdrop-blur-xs h-[90vh] w-[50vw] overflow-x-hidden overflow-y-auto scrollbar-auto-hide"
       onClick={(e) => e.stopPropagation()}
     >
       <form
         onSubmit={(e) => handleSubmit(e)}
-        className="space-y-6 justify-center items-center flex  fixed inset-0 z-50 outline-none focus:outline-none flex-col"
+        className="space-y-6 justify-center items-center flex  fixed inset-0 outline-none focus:outline-none flex-col"
       >
         <div className="flex flex-row gap-10">
           <div className="flex flex-col space-y-6">
@@ -180,7 +183,7 @@ export default function FormProduct({ productEditSelected, closeModal }) {
           <button
             type="button"
             className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-            onClick={closeModal}
+            onClick={closeModalFormProducts}
           >
             Cancelar
           </button>
@@ -188,7 +191,7 @@ export default function FormProduct({ productEditSelected, closeModal }) {
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
-            Guardar cambios
+            {productEditSelected ? ` Guardar cambios` : `Cargar`}
           </button>
         </div>
       </form>
