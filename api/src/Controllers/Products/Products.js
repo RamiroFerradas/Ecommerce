@@ -8,14 +8,7 @@ const getProducts = async () => {
   try {
     const products = await Product.findAll({
       order: ["name"],
-      attributes: [
-        "id",
-        "name",
-        "description",
-        "image_url",
-        "price",
-        "category",
-      ],
+      attributes: ["id", "name", "description", "image_url", "price"],
       include: {
         model: Brand,
         attributes: ["id", "name", "logo_url"],
@@ -37,7 +30,7 @@ const getProducts = async () => {
 // POST PRODUCT
 
 const insertProduct = async (data) => {
-  let { name, description, image_url, price, brand, category } = data;
+  let { name, description, image_url, price, brand } = data;
 
   try {
     if (!name || !description || !image_url || !price || !brand) {
@@ -87,7 +80,7 @@ const insertProduct = async (data) => {
       description,
       image_url,
       price: Number(price),
-      category,
+
       brandId: foundOrCreatedBrand.id,
     });
 
@@ -103,14 +96,7 @@ const getProductsById = async (id) => {
   try {
     const productId = await Product.findOne({
       where: { id },
-      attributes: [
-        "id",
-        "name",
-        "description",
-        "image_url",
-        "price",
-        "category",
-      ],
+      attributes: ["id", "name", "description", "image_url", "price"],
       include: {
         model: Brand,
         attributes: ["id", "name", "logo_url"],
@@ -141,7 +127,7 @@ const updateProduct = async (productId, data) => {
     }
 
     // Actualizar el producto con los nuevos datos
-    const { name, description, image_url, price, brand, category } = data;
+    const { name, description, image_url, price, brand } = data;
     if (name) {
       product.name = name;
     }
@@ -154,9 +140,7 @@ const updateProduct = async (productId, data) => {
     if (price) {
       product.price = price;
     }
-    if (category) {
-      product.category = category;
-    }
+
     if (brand) {
       // Buscar la marca existente o crear una nueva
       const [foundOrCreatedBrand] = await Brand.findOrCreate({

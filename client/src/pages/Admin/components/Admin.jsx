@@ -12,7 +12,7 @@ export default function Admin() {
   const [brandEditSelected, setbrandEditSelected] = useState(false);
 
   const [viewFormProducts, setViewFormProducts] = useState(false);
-  const [viewFormBrands, setViewFormBrands] = useState(true);
+  const [viewFormBrands, setViewFormBrands] = useState(false);
 
   const closeModalFormProducts = () => {
     setViewFormProducts(false);

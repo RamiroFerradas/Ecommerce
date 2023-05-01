@@ -12,7 +12,6 @@ export default function FormProduct({
     description: productEditSelected ? productEditSelected.description : "",
     image_url: productEditSelected ? productEditSelected.image_url : "",
     price: productEditSelected ? productEditSelected.price : "",
-    category: productEditSelected ? productEditSelected.category : "",
     brand: {
       name:
         productEditSelected && productEditSelected.brand

@@ -96,7 +96,7 @@ export const addProduct = (productData) => async (dispatch) => {
     const res = await axios.post(url, productData, {
       headers,
     });
-    console.log(res.data);
+
     dispatch(getProducts());
   } catch (error) {
     console.error(error.message);
@@ -108,7 +108,7 @@ export const updateProduct = (id, updatedProductData) => async (dispatch) => {
     const res = await axios.put(`${url}/${id}`, updatedProductData, {
       headers,
     });
-    console.log(res.data);
+
     dispatch(getProducts());
   } catch (error) {
     console.error(error.message);
@@ -120,7 +120,6 @@ export const deleteProduct = (id) => async (dispatch) => {
     const res = await axios.delete(`${url}/${id}`, {
       headers,
     });
-    console.log(res.data);
     dispatch(getProducts());
   } catch (error) {
     console.error(error.message);
