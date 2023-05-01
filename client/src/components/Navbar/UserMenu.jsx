@@ -10,7 +10,7 @@ export default function UserMenu() {
   return (
     <div
       id="userMenu"
-      className="absolute left-1/2 transform -translate-x-1/2 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl z-10 hidden"
+      className="absolute left-[-100%] md:left-1/2  transform -translate-x-1/2 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl z-10 hidde"
     >
       <button
         className="block px-4 py-2 text-gray-800 hover:bg-blue-600/75 hover:text-white w-full transition duration-10 ease-in-out"

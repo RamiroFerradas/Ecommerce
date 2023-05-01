@@ -1,5 +1,13 @@
 import React from "react";
 import { useCart } from "../../../hooks/useCart";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCartFlatbed,
+  faCartPlus,
+  faShoppingCart,
+} from "@fortawesome/free-solid-svg-icons";
+
+import { BsFillCartPlusFill, BsFillCartXFill } from "react-icons/bs";
 
 const ProductCard = ({ product, handleProductSelect }) => {
   const { itemExists, handleAddToCart, handleRemoveFromCart } =
@@ -8,19 +16,21 @@ const ProductCard = ({ product, handleProductSelect }) => {
   return (
     <div
       onClick={() => handleProductSelect(product)}
-      className="p-3 cursor-pointer bg-white hover:bg-gray-200 rounded-lg shadow-lg overflow-hidden"
+      className="p-3 cursor-pointer bg-white hover:bg-gray-200 rounded-lg shadow-lg overflow-hidden h-30 "
     >
       <div className="relative pb-48 overflow-hidden rounded-md">
         <img
-          className="absolute h-full w-full object-cover"
+          className="absolute h-full w-full object-contain"
           src={product.image_url}
           alt={product.name}
         />
       </div>
-      <div className="p-4">
-        <h3 className="font-medium text-gray-900">{product.name}</h3>
-        <p className="text-gray-600">{product.description}</p>
-        <div className="mt-4 flex items-center justify-between">
+      <div className="p-4 overflow-hidden">
+        <p className="font-medium text-gray-900 text-center h-10">
+          {product.name}
+        </p>
+        <p className="text-gray-600 md:block hidden">{product.description}</p>
+        <div className="mt-4 flex items-center justify-between h-20 w-full gap-1">
           <p className="font-bold text-gray-700">${product.price}</p>
           <button
             onClick={(e) => {
@@ -31,7 +41,11 @@ const ProductCard = ({ product, handleProductSelect }) => {
             }}
             className="bg-gray-800 text-white px-3 py-2 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-gray-700"
           >
-            {itemExists ? `Remover del carro` : `Agregar al carro`}
+            {!itemExists ? (
+              <BsFillCartPlusFill className="text-gray-200 text-2xl" />
+            ) : (
+              <BsFillCartXFill className="text-gray-200 text-2xl" />
+            )}
           </button>
         </div>
       </div>
