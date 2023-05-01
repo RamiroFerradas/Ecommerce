@@ -1,9 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import UserMenu from "./userMenu";
+import UserMenu from "../Navbar/UserMenu.jsx";
 
 export default function Login() {
   const { isLoading, isAuthenticated, loginWithRedirect, user } = useAuth0();
