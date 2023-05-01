@@ -59,7 +59,7 @@ export const addBrand = (brandData) => async (dispatch) => {
     const res = await axios.post(url, brandData, {
       headers,
     });
-    console.log(res.data);
+
     dispatch(getBrands());
   } catch (error) {
     console.error(error.message);
@@ -71,7 +71,7 @@ export const updateBrand = (id, updatedBrandData) => async (dispatch) => {
     const res = await axios.put(`${url}/${id}`, updatedBrandData, {
       headers,
     });
-    console.log(res.data);
+
     dispatch(getBrands());
   } catch (error) {
     console.error(error.message);
@@ -83,7 +83,7 @@ export const deleteBrand = (id) => async (dispatch) => {
     const res = await axios.delete(`${url}/${id}`, {
       headers,
     });
-    console.log(res.data);
+
     dispatch(getBrands());
   } catch (error) {
     console.error(error.message);

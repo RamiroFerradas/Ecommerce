@@ -20,7 +20,7 @@ export default function Card({
   return (
     <li
       key={product.id}
-      className="bg-white shadow rounded-lg p-4  sm:w-full md:w-2/3 border border-gray-300 flex flex-col justify-center items-center"
+      className="bg-white shadow rounded-lg p-4  w-full md:w-2/3 border border-gray-300 flex flex-col justify-center items-center"
     >
       <div>
         <p className="text-md font-bold text-center">{product.name}</p>

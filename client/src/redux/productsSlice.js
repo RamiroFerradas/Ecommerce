@@ -9,7 +9,6 @@ const initialState = {
   loading: false,
   searchResults: [],
 };
-
 export const productsSlice = createSlice({
   name: "products",
   initialState,
@@ -35,33 +34,33 @@ export const productsSlice = createSlice({
       }
     },
     filterProductsByBrand: (state, action) => {
-      const selectedBrands = action.payload;
-      if (selectedBrands.length === 0) {
+      const selectedBrand = action.payload;
+
+      if (selectedBrand === "all") {
         state.allProducts = state.auxProducts;
       } else {
-        state.allProducts = state.allProducts.filter((product) =>
-          selectedBrands.includes(product.brand.name)
+        state.allProducts = state.auxProducts.filter(
+          (product) => product.brand.name === selectedBrand
         );
       }
     },
     sortProducts: (state, action) => {
-      const { alphabetically, price } = action.payload;
+      const { price, alphabetically } = action.payload;
 
+      let currentProducts = [...state.allProducts];
       if (alphabetically === "a-z") {
-        state.allProducts = state.allProducts.sort((a, b) =>
-          a.name.localeCompare(b.name)
-        );
+        currentProducts.sort((a, b) => (a.name < b.name ? -1 : 1));
       } else if (alphabetically === "z-a") {
-        state.allProducts = state.allProducts.sort((a, b) =>
-          b.name.localeCompare(a.name)
-        );
-      } else if (price === "price-high") {
-        state.allProducts = state.allProducts.sort((a, b) => b.price - a.price);
-      } else if (price === "price-low") {
-        state.allProducts = state.allProducts.sort((a, b) => a.price - b.price);
-      } else {
-        state.allProducts = state.auxProducts;
+        currentProducts.sort((a, b) => (a.name > b.name ? -1 : 1));
       }
+
+      if (price === "low") {
+        currentProducts.sort((a, b) => (a.price < b.price ? -1 : 1));
+      } else if (price === "high") {
+        currentProducts.sort((a, b) => (a.price > b.price ? -1 : 1));
+      }
+
+      state.allProducts = currentProducts;
     },
   },
 });

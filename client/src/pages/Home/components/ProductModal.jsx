@@ -17,7 +17,7 @@ const ProductModal = ({ product, setSelectedProduct }) => {
           className="relative w-auto my-6 mx-auto max-w-3xl"
           onClick={stopPropagation}
         >
-          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white p outline-none focus:outline-none justify-center items-center sm:h-[65vh] md:h-[90vh] overflow-hidden">
+          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white p outline-none focus:outline-none justify-center items-center h-[65vh] md:h-[90vh] overflow-hidden">
             <button
               className="p-1 ml-auto bg-transparent border-0 text-gray-600 float-right text-3xl leading-none font-semibold outline-none focus:outline-none opacity-70"
               onClick={handleModalClose}
