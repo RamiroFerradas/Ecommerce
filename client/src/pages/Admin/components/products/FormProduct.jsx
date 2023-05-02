@@ -60,16 +60,18 @@ export default function FormProduct({
   };
 
   return (
-    <div
-      className="rounded-3xl fixed m-auto inset-0 bg-black/80 backdrop-blur-xs h-[90vh] w-[50vw] overflow-x-hidden overflow-y-auto scrollbar-auto-hide"
-      onClick={(e) => e.stopPropagation()}
-    >
+    <div className="rounded-3xl fixed md:inset-0 inset-1 bg-black/80 backdrop-blur-xs h-[vh] md:w-[50vw] overflow-x-hidden overflow-y-auto m-auto">
       <form
-        onSubmit={(e) => handleSubmit(e)}
-        className="space-y-6 justify-center items-center flex  fixed inset-0 outline-none focus:outline-none flex-col"
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
+        className="space-y-6 justify-center items-center flex  fixed inset-0 outline-none focus:outline-none flex-col mt-5"
       >
-        <div className="flex flex-row gap-10">
-          <div className="flex flex-col space-y-6">
+        <div
+          className="flex flex-col md:flex-row gap-10"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex flex-col space-y-6 w-80">
             <div>
               <label
                 htmlFor="name"

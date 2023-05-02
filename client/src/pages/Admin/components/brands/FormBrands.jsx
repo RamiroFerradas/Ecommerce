@@ -37,7 +37,7 @@ export default function FormBrands({
 
   return (
     <div
-      className="rounded-3xl fixed inset-0 bg-black/80 backdrop-blur-xs h-[45vh] w-[30vw] overflow-x-hidden overflow-y-auto m-auto"
+      className="rounded-3xl fixed md:inset-0 inset-1 bg-black/80 backdrop-blur-xs h-[45vh] md:w-[30vw] overflow-x-hidden overflow-y-auto m-auto"
       onClick={(e) => e.stopPropagation()}
     >
       <form

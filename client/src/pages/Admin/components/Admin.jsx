@@ -26,12 +26,32 @@ export default function Admin() {
 
   return (
     <div
-      className="container mx-auto px-4 back flex justify-center items-center flex-col"
+      className="container mx-auto px-4 back flex justify-center items-center flex-col "
       onClick={() => {
         closeModalFormProducts();
         closeModalFormBrands();
       }}
     >
+      {viewFormProducts ? (
+        <div className="fixed top-0 w-screen h-screen bg-black/80 md:backdrop-blur-xs">
+          <FormProduct
+            productEditSelected={productEditSelected}
+            closeModalFormProducts={closeModalFormProducts}
+          />
+        </div>
+      ) : (
+        false
+      )}
+      {viewFormBrands ? (
+        <div className="fixed top-0 w-screen h-screen bg-black/80 md:backdrop-blur-xs">
+          <FormBrands
+            brandEditSelected={brandEditSelected}
+            closeModalFormBrands={closeModalFormBrands}
+          />
+        </div>
+      ) : (
+        false
+      )}
       <div className="flex flex-row justify-around w-full items-center py-2 md:gap-0 gap-16">
         <button
           className="bg-green-500 hover:bg-green-400 text-white font-bold md:py-2 md:px-4 py-1 px-3 text-sm  rounded"
@@ -59,42 +79,25 @@ export default function Admin() {
         </button>
       </div>
 
-      <div className="gap-5 w-screen md:w-aut md:p-0 p-auto flex justify-center items-center md:flex-row flex-col">
+      <div className="gap-5 w-screen  md:px-5 p-auto flex justify-center items-center md:flex-row flex-col">
         <ToggleProductBrand
           refProductsAdmin={refProductsAdmin}
           refBrandsAdmin={refBrandsAdmin}
         />
 
-        <div ref={refBrandsAdmin} className="hidden md:block ">
+        <div ref={refBrandsAdmin} className="hidden md:block  ">
           <BrandsAdmin
             setbrandEditSelected={setbrandEditSelected}
             setViewFormBrands={setViewFormBrands}
           />
         </div>
-        <div ref={refProductsAdmin} className="md:block">
+        <div ref={refProductsAdmin} className="md:block min-h-[60vh]">
           <ProductsAdmin
             setProductEditSelected={setProductEditSelected}
             setViewFormProducts={setViewFormProducts}
           />
         </div>
       </div>
-
-      {viewFormProducts ? (
-        <FormProduct
-          productEditSelected={productEditSelected}
-          closeModalFormProducts={closeModalFormProducts}
-        />
-      ) : (
-        false
-      )}
-      {viewFormBrands ? (
-        <FormBrands
-          brandEditSelected={brandEditSelected}
-          closeModalFormBrands={closeModalFormBrands}
-        />
-      ) : (
-        false
-      )}
     </div>
   );
 }

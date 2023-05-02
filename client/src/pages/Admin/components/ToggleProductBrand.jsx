@@ -22,7 +22,7 @@ export default function ToggleProductBrand({
   };
 
   return (
-    <div className="flex justify-center">
+    <div className="md:hidden flex justify-center">
       <button
         className={`${
           toggleProductBrand === "Productos"

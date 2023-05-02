@@ -46,6 +46,7 @@ export default function CartMenu({ setShowCartMenu, showCartMenu }) {
               /* Read more about handling dismissals below */
               if (result.dismiss === Swal.DismissReason.timer) {
                 handleClearCart();
+                setShowCartMenu(false);
                 Swal.fire({
                   icon: "success",
                   title: "Pago realizado con exito",
@@ -60,7 +61,7 @@ export default function CartMenu({ setShowCartMenu, showCartMenu }) {
 
   return (
     showCartMenu && (
-      <div className="z-50 min-h-[30%] absolute right-0 top-14 w-64 bg-white shadow-lg rounded-lg">
+      <div className="z-40 min-h-[30%] absolute right-0 top-14 w-64 bg-white shadow-lg rounded-lg">
         <div className="min-h-[40vh] max-h-[60vh] overflow-auto">
           {items?.map((product) => (
             <div key={product?.id} className="flex items-center p-2">
