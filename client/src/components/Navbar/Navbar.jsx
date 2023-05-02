@@ -22,7 +22,10 @@ export default function Navbar() {
   const { handleInputChangue, input } = useSearch();
   return (
     <nav className="bg-blue-100 border-gray-200 dark:bg-gray-900">
-      <div className="max-w-screen-xl flex flex-wrap items-center mx-auto p-4 justify-between md:order-1">
+      <div
+        onClick={() => setShowCartMenu(false)}
+        className="max-w-screen-xl flex flex-wrap items-center mx-auto p-4 justify-between md:order-1"
+      >
         <NavLink to="/" className="flex items-center">
           <img src={logoSD} className="h-8 mr-3" alt="Flowbite Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">

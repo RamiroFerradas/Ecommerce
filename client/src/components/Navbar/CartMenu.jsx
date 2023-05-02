@@ -2,55 +2,60 @@ import React from "react";
 import Swal from "sweetalert2";
 import { useCart } from "../../hooks/useCart";
 import { BsFillCartXFill } from "react-icons/bs";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function CartMenu({ setShowCartMenu, showCartMenu }) {
   const { items, handleRemoveFromCart, handleClearCart, totalPriceCart } =
     useCart();
 
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
+
   const handlePay = () => {
-    Swal.fire({
-      title: "Realizar el pago",
-      text: `Desea realizar el pago por $${totalPriceCart}?`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "##3B82F6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Pagar",
-      cancelButtonText: "Cancelar",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // Swal.fire("Deleted!", "Your file has been deleted.", "success");
-        let timerInterval;
-        Swal.fire({
-          title: "Procesando pago",
-          // html: "I will close in <b></b> milliseconds.",
-          text: "Aguarde por favor",
-          timer: 2000,
-          timerProgressBar: true,
-          didOpen: () => {
-            Swal.showLoading();
-            const b = Swal.getHtmlContainer().querySelector("b");
-            timerInterval = setInterval(() => {
-              b.textContent = Swal.getTimerLeft();
-            }, 100);
-          },
-          willClose: () => {
-            clearInterval(timerInterval);
-          },
+    !isAuthenticated
+      ? loginWithRedirect()
+      : Swal.fire({
+          title: "Realizar el pago",
+          text: `Desea realizar el pago por $${totalPriceCart}?`,
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "##3B82F6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Pagar",
+          cancelButtonText: "Cancelar",
         }).then((result) => {
-          /* Read more about handling dismissals below */
-          if (result.dismiss === Swal.DismissReason.timer) {
-            handleClearCart();
+          if (result.isConfirmed) {
+            // Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            let timerInterval;
             Swal.fire({
-              icon: "success",
-              title: "Pago realizado con exito",
-              showConfirmButton: false,
-              timer: 1500,
+              title: "Procesando pago",
+              // html: "I will close in <b></b> milliseconds.",
+              text: "Aguarde por favor",
+              timer: 2000,
+              timerProgressBar: true,
+              didOpen: () => {
+                Swal.showLoading();
+                const b = Swal.getHtmlContainer().querySelector("b");
+                timerInterval = setInterval(() => {
+                  b.textContent = Swal.getTimerLeft();
+                }, 100);
+              },
+              willClose: () => {
+                clearInterval(timerInterval);
+              },
+            }).then((result) => {
+              /* Read more about handling dismissals below */
+              if (result.dismiss === Swal.DismissReason.timer) {
+                handleClearCart();
+                Swal.fire({
+                  icon: "success",
+                  title: "Pago realizado con exito",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+              }
             });
           }
         });
-      }
-    });
   };
 
   return (

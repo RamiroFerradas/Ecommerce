@@ -10,7 +10,10 @@ export default function CartIcon({ setShowCartMenu, showCartMenu }) {
 
   return (
     <div
-      onClick={() => setShowCartMenu(!showCartMenu)}
+      onClick={(e) => {
+        e.stopPropagation();
+        setShowCartMenu(!showCartMenu);
+      }}
       className="relative inline-block mr-2 mt-1 cursor-pointer"
     >
       <FontAwesomeIcon className="text-2xl" icon={faShoppingCart} />
