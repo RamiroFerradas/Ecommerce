@@ -22,13 +22,18 @@ export default function BrandsAdmin({
   };
 
   return (
-    <div className="h-auto md:min-h-[60vh] bg-red-gray border border-gray-400 rounded-xl p-6">
+    <div className="h-auto md:min-h-[60vh] bg-red-gray border border-gray-400 rounded-xl p-6 w-72">
       <p className="hidden md:block text-xl font-bold mb-4 text-center ">
         Marcas
       </p>
       <ul className="flex flex-col gap-3">
         {allBrands.map((brand) => (
           <li key={brand.id} className="flex">
+            <img
+              src={brand.logo_url}
+              alt={brand.name}
+              className="w-6 h-6 object-cover rounded-full mr-2"
+            />
             <p>{brand.name}</p>
             <div className="flex items-end gap-2 ml-auto">
               <button
