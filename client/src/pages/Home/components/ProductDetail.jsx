@@ -2,19 +2,18 @@ import React from "react";
 import { stopPropagation } from "../../../utils/stopPropagation";
 import { useCart } from "../../../hooks/useCart";
 
-const ProductModal = ({ product, setSelectedProduct }) => {
+export default function ProductDetail({ product, setSelectedProduct }) {
   const handleModalClose = () => {
     setSelectedProduct(null);
   };
 
-  const { itemExists, handleAddToCart, handleRemoveFromCart } =
-    useCart(product);
+  const { itemExist, handleAddToCart, handleRemoveFromCart } = useCart(product);
 
   return (
     <div onClick={handleModalClose}>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none h-screen">
         <div
-          className="relative w-auto my-6 mx-auto max-w-3xl"
+          className="relative w-auto my-6 mx-auto max-w-3xl border-4 border-gray-800/25 rounded-xl"
           onClick={stopPropagation}
         >
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white p outline-none focus:outline-none justify-center items-center h-[65vh] md:h-[90vh] overflow-hidden">
@@ -27,27 +26,12 @@ const ProductModal = ({ product, setSelectedProduct }) => {
               </span>
             </button>
 
-            <div className="flex p-3 h-[28rem]">
+            <div className="flex p-3 h-[28rem] ">
               <div className="w-1/2 relative justify-center items-center flex">
-                {/* <ReactImageMagnify
-                  {...{
-                    smallImage: {
-                      alt: "Wristwatch by Ted Baker London",
-                      isFluidWidth: true,
-                      src: product,
-                    },
-                    largeImage: {
-                      src: product,
-                      width: 1200,
-                      height: 1800,
-                    },
-                  }}
-                /> */}
-
                 <img
                   src={product.image_url}
                   alt={product.name}
-                  className="object-cover h-80"
+                  className="object-contain h-80"
                 />
               </div>
 
@@ -74,13 +58,13 @@ const ProductModal = ({ product, setSelectedProduct }) => {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  itemExists
+                  itemExist
                     ? handleRemoveFromCart(product)
                     : handleAddToCart(product);
                 }}
                 className="bg-gray-800 text-white px-3 py-2 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-gray-700"
               >
-                {itemExists ? `Remover del carro` : `Agregar al carro`}
+                {itemExist ? `Remover del carro` : `Agregar al carro`}
               </button>
             </div>
           </div>
@@ -89,6 +73,4 @@ const ProductModal = ({ product, setSelectedProduct }) => {
       <div className="opacity-25 fixed inset-0 z-40 bg-black h-screen"></div>
     </div>
   );
-};
-
-export default ProductModal;
+}

@@ -6,14 +6,23 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
+import CartMenu from "./CartMenu";
 
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
+  const [showCartMenu, setShowCartMenu] = useState(false);
 
   const openSidebar = () => {
     const sidebar = document.getElementById("sidebar_menu");
 
     sidebar.classList.toggle("hidden");
+  };
+
+  const hideUserMenu = () => {
+    const userMenu = document.getElementById("userMenu");
+    const sidebar_menu = document.getElementById("sidebar_menu");
+    userMenu.classList.add("hidden");
+    sidebar_menu.classList.add("hidden");
   };
 
   const { handleInputChangue, input } = useSearch();
@@ -56,8 +65,12 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="md:order-3 flex items-center justify-center gap-3 overflow-hidde h-12">
-          <CartIcon />
+        <div className="md:order-3 flex items-center justify-center gap-3 flex-row  h-12">
+          <CartIcon
+            showCartMenu={showCartMenu}
+            setShowCartMenu={setShowCartMenu}
+          />
+
           <Login setShowMenu={setShowMenu} showMenu={showMenu} />
         </div>
         <div className="flex flex-row w-screen gap-3 mt-3 md:hidden ">
@@ -95,6 +108,7 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+      <CartMenu showCartMenu={showCartMenu} setShowCartMenu={setShowCartMenu} />
     </nav>
   );
 }

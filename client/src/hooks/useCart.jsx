@@ -5,28 +5,32 @@ export const useCart = (product) => {
   const dispatch = useDispatch();
   const { items } = useSelector(({ cart }) => cart);
 
-  const itemExists = items.find((item) => item.id === product.id);
-
+  const itemExist = items.find((item) => item.id === product?.id);
   const handleAddToCart = (product) => {
-    if (!itemExists) {
-      dispatch(addItem(product));
-    }
+    dispatch(addItem(product));
   };
 
   const handleRemoveFromCart = (product) => {
-    if (itemExists) {
-      dispatch(removeItem(product.id));
-    }
+    dispatch(removeItem(product?.id));
   };
   const handleClearCart = () => {
     dispatch(clearCart());
   };
 
+  const totalPriceCart = items
+    ?.reduce(
+      (accumulator, currentValue) =>
+        accumulator + parseFloat(currentValue.price),
+      0
+    )
+    .toFixed(2);
+
   return {
     items,
-    itemExists,
+    itemExist,
     handleAddToCart,
     handleRemoveFromCart,
     handleClearCart,
+    totalPriceCart,
   };
 };

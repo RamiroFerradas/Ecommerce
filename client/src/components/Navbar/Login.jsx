@@ -11,8 +11,9 @@ export default function Login() {
     const userMenu = document.querySelector("#userMenu");
     userMenu.classList.toggle("hidden");
   };
+
   return (
-    <div>
+    <div className="flex justify-center items-center">
       {!isAuthenticated && !isLoading && (
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -24,15 +25,15 @@ export default function Login() {
 
       {isAuthenticated && user ? (
         <div className="relative inline-block">
-          <div className="flex flex-col items-center relatie overflow-hidden h-10">
+          <div className="flex flex-col items-center relatie overflow-hidden ">
             <button onClick={toggleUserMenu}>
               <img
                 src={user?.picture}
                 alt={user?.name}
-                className="w-10 h-10 rounded-full object-cover"
+                className="w-12 h-12 rounded-full object-cover"
               />
             </button>
-            <div className="text-gray-800 text-sm absolute top-9">
+            <div className="text-gray-800 text-sm absolute top-11">
               <FontAwesomeIcon icon={faAngleDown} />
             </div>
           </div>

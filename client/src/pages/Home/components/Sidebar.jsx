@@ -21,11 +21,11 @@ export default function Sidebar() {
   return (
     <div
       id="sidebar_menu"
-      className="hidden md:block md:relative rounded-e-2xl absolute z-40 bg-blue-100 w-[40vw] md:w-1/5 md:bg-gray-100 transition-all duration-500"
+      className="hidden md:block md:relative rounded-e-2xl md:rounded-none absolute z-40 bg-blue-100 w-[40vw] md:w-1/5 md:bg-gray-200 transition-all duration-500"
     >
       <div className="border-b-2 border-gray-200 py-4 px-6">
         <h1 className="text-xl font-medium ">Filtrar</h1>
-        <hr className="border-gray-200" />
+        {/* <hr className="border-gray-200" /> */}
       </div>
       <div className="px-6 py-2">
         <h2 className="text-lg font-medium mb-4">Marcas</h2>
@@ -60,7 +60,7 @@ export default function Sidebar() {
 
       <div className="border-b-2 border-gray-200 py-4 px-6">
         <h1 className="text-xl font-medium mb-">Ordenar</h1>
-        <hr className="border-gray-200" />
+        {/* <hr className="border-gray-200" /> */}
       </div>
       <div className="px-6 py-2">
         <h2 className="text-md font-medium mb-4">Alfabeticamente</h2>

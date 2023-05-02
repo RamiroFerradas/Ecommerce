@@ -1,17 +1,9 @@
 import React from "react";
 import { useCart } from "../../../hooks/useCart";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCartFlatbed,
-  faCartPlus,
-  faShoppingCart,
-} from "@fortawesome/free-solid-svg-icons";
-
 import { BsFillCartPlusFill, BsFillCartXFill } from "react-icons/bs";
 
 const ProductCard = ({ product, handleProductSelect }) => {
-  const { itemExists, handleAddToCart, handleRemoveFromCart } =
-    useCart(product);
+  const { itemExist, handleAddToCart, handleRemoveFromCart } = useCart(product);
 
   return (
     <div
@@ -29,19 +21,23 @@ const ProductCard = ({ product, handleProductSelect }) => {
         <p className="font-medium text-gray-900 text-center h-10">
           {product.name}
         </p>
-        <p className="text-gray-600 md:block hidden">{product.description}</p>
+        <p className="text-gray-600 md:block hidden h-12 overflow-hidden">
+          {product.description}
+        </p>
         <div className="mt-4 flex items-center justify-between h-20 w-full gap-1">
           <p className="font-bold text-gray-700">${product.price}</p>
           <button
             onClick={(e) => {
               e.stopPropagation();
-              itemExists
+              itemExist
                 ? handleRemoveFromCart(product)
                 : handleAddToCart(product);
             }}
-            className="bg-gray-800 text-white px-3 py-2 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-gray-700"
+            className={`bg-gray-800 text-white px-3 py-2 rounded-md ${
+              !itemExist ? `hover:bg-blue-500 ` : `hover:bg-red-500`
+            } focus:outline-none focus:bg-gray-700`}
           >
-            {!itemExists ? (
+            {!itemExist ? (
               <BsFillCartPlusFill className="text-gray-200 text-2xl" />
             ) : (
               <BsFillCartXFill className="text-gray-200 text-2xl" />
