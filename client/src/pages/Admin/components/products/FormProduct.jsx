@@ -60,7 +60,7 @@ export default function FormProduct({
   };
 
   return (
-    <div className="rounded-3xl fixed md:inset-0 inset-1 bg-black/80 backdrop-blur-xs h-[vh] md:w-[50vw] overflow-x-hidden overflow-y-auto m-auto">
+    <div className="rounded-3xl fixed md:inset-0 inset-1 bg-black/80 backdrop-blur-xs h-[90vh] md:w-[50vw] overflow-x-hidden overflow-y-auto m-auto">
       <form
         onSubmit={(e) => {
           handleSubmit(e);
