@@ -37,8 +37,6 @@ export default function Login() {
               <FontAwesomeIcon icon={faAngleDown} />
             </div>
           </div>
-
-          <UserMenu />
         </div>
       ) : (
         <div className="relative inline-block w-10 h-10"></div>

@@ -7,6 +7,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import CartMenu from "./CartMenu";
+import UserMenu from "./UserMenu";
 
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
@@ -16,13 +17,6 @@ export default function Navbar() {
     const sidebar = document.getElementById("sidebar_menu");
 
     sidebar.classList.toggle("hidden");
-  };
-
-  const hideUserMenu = () => {
-    const userMenu = document.getElementById("userMenu");
-    const sidebar_menu = document.getElementById("sidebar_menu");
-    userMenu.classList.add("hidden");
-    sidebar_menu.classList.add("hidden");
   };
 
   const { handleInputChangue, input } = useSearch();
@@ -108,6 +102,8 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+
+      <UserMenu setShowMenu={setShowMenu} />
       <CartMenu showCartMenu={showCartMenu} setShowCartMenu={setShowCartMenu} />
     </nav>
   );

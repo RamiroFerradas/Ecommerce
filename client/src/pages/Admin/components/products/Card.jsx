@@ -20,15 +20,21 @@ export default function Card({
   return (
     <li
       key={product.id}
-      className="bg-white shadow rounded-lg p-4  w-full md:w-2/3 border border-gray-300 flex flex-col justify-center items-center"
+      className="bg-white shadow rounded-lg p-4  w-full md:w-40 h-72 border border-gray-300 flex flex-col justify-around items-center"
     >
       <div>
-        <p className="text-md font-bold text-center">{product.name}</p>
-        <p className="text-md text-center">{product.brand.name}</p>
-        <img src={product.image_url} alt={product.brand.name} />
+        <p className="text-sm font-bold text-center">{product.name}</p>
+        <p className="text-sm text-center">{product.brand.name}</p>
+        <div className="flex justify-center">
+          <img
+            className="object-contain h-28"
+            src={product.image_url}
+            alt={product.brand.name}
+          />
+        </div>
         <p className="mt-2 text-gray-600 text-center">${product.price}</p>
       </div>
-      <div className="mt-4 flex justify-between">
+      <div className="mt-4 flex gap-2">
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded text-sm"
           onClick={(e) => {

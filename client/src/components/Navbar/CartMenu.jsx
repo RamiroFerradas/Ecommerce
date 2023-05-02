@@ -55,7 +55,7 @@ export default function CartMenu({ setShowCartMenu, showCartMenu }) {
 
   return (
     showCartMenu && (
-      <div className="min-h-[30%] z-40 absolute right-0 top-14 w-64 bg-white shadow-lg rounded-lg">
+      <div className="z-50 min-h-[30%] absolute right-0 top-14 w-64 bg-white shadow-lg rounded-lg">
         <div className="min-h-[40vh] max-h-[60vh] overflow-auto">
           {items?.map((product) => (
             <div key={product?.id} className="flex items-center p-2">

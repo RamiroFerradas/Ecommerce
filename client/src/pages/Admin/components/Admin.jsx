@@ -1,11 +1,9 @@
-import { useState } from "react";
-import useFetchProducts from "../../../hooks/useFetchProducts";
-import Card from "./products/Card";
+import { useRef, useState } from "react";
 import FormProduct from "./products/FormProduct";
-import useFetchBrands from "../../../hooks/useFetchBrands";
 import BrandsAdmin from "./brands/BrandsAdmin";
 import ProductsAdmin from "./products/ProductsAdmin";
 import FormBrands from "./brands/FormBrands";
+import ToggleProductBrand from "./ToggleProductBrand";
 
 export default function Admin() {
   const [productEditSelected, setProductEditSelected] = useState(false);
@@ -23,17 +21,20 @@ export default function Admin() {
     setbrandEditSelected(false);
   };
 
+  const refProductsAdmin = useRef();
+  const refBrandsAdmin = useRef();
+
   return (
     <div
-      className="container mx-auto px-4 back"
+      className="container mx-auto px-4 back flex justify-center items-center flex-col"
       onClick={() => {
         closeModalFormProducts();
         closeModalFormBrands();
       }}
     >
-      <div className="flex justify-between items-center py-2">
+      <div className="flex flex-row justify-around w-full items-center py-2 md:gap-0 gap-16">
         <button
-          className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded"
+          className="bg-green-500 hover:bg-green-400 text-white font-bold md:py-2 md:px-4 py-1 px-3 text-sm  rounded"
           onClick={(e) => {
             e.stopPropagation();
             setViewFormProducts(false);
@@ -43,11 +44,11 @@ export default function Admin() {
           Cargar marca
         </button>
 
-        <p className="text-2xl font-bol mb-4 flex-grow text-center">
-          Panel de administrracion
+        <p className="md:text-2xl text-md font-bol mb-4 flex-grow text-center">
+          Panel de administracion
         </p>
         <button
-          className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded"
+          className="bg-green-500 hover:bg-green-400 text-white font-bold md:py-2 md:px-4 py-1 px-3 text-sm rounded"
           onClick={(e) => {
             e.stopPropagation();
             setViewFormProducts(true);
@@ -57,15 +58,25 @@ export default function Admin() {
           Cargar producto
         </button>
       </div>
-      <div className="flex gap-5 ">
-        <BrandsAdmin
-          setbrandEditSelected={setbrandEditSelected}
-          setViewFormBrands={setViewFormBrands}
+
+      <div className="gap-5 w-screen md:w-aut md:p-0 p-auto flex justify-center items-center md:flex-row flex-col">
+        <ToggleProductBrand
+          refProductsAdmin={refProductsAdmin}
+          refBrandsAdmin={refBrandsAdmin}
         />
-        <ProductsAdmin
-          setProductEditSelected={setProductEditSelected}
-          setViewFormProducts={setViewFormProducts}
-        />
+
+        <div ref={refBrandsAdmin} className="hidden md:block ">
+          <BrandsAdmin
+            setbrandEditSelected={setbrandEditSelected}
+            setViewFormBrands={setViewFormBrands}
+          />
+        </div>
+        <div ref={refProductsAdmin} className="md:block">
+          <ProductsAdmin
+            setProductEditSelected={setProductEditSelected}
+            setViewFormProducts={setViewFormProducts}
+          />
+        </div>
       </div>
 
       {viewFormProducts ? (
