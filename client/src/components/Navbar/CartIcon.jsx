@@ -3,9 +3,6 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 
 export default function CartIcon({ setShowCartMenu, showCartMenu }) {
-  // const { setViewPurchases, setViewParameters } = useView();
-  // const { shopCart } = useShopCart();
-
   const { items } = useSelector(({ cart }) => cart);
 
   return (

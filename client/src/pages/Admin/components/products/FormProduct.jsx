@@ -3,9 +3,7 @@ import { useDispatch } from "react-redux";
 import { addProduct, updateProduct } from "../../../../redux/productsSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
-import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
-
 import useFetchBrands from "../../../../hooks/useFetchBrands";
 
 export default function FormProduct({

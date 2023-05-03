@@ -4,8 +4,12 @@ import BrandsAdmin from "./brands/BrandsAdmin";
 import ProductsAdmin from "./products/ProductsAdmin";
 import FormBrands from "./brands/FormBrands";
 import ToggleProductBrand from "./ToggleProductBrand";
+import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Admin() {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth0();
   const [productEditSelected, setProductEditSelected] = useState(false);
   const [brandEditSelected, setbrandEditSelected] = useState(false);
 
@@ -24,7 +28,9 @@ export default function Admin() {
   const refProductsAdmin = useRef();
   const refBrandsAdmin = useRef();
 
-  return (
+  return !isAuthenticated ? (
+    navigate("/")
+  ) : (
     <div
       className="container mx-auto px-4 back flex justify-center items-center flex-col "
       onClick={() => {

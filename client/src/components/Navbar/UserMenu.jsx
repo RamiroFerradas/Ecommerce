@@ -1,12 +1,9 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function UserMenu({ setShowMenu }) {
   const { logout } = useAuth0();
-
   const navigate = useNavigate();
-
   const { pathname } = useLocation();
 
   let buttonText = pathname !== "/admin" ? "Panel de administración" : "Inicio";
