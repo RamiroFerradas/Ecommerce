@@ -21,9 +21,9 @@ const ProductCard = ({ product, handleProductSelect }) => {
         <p className="font-medium text-gray-900 text-center h-10">
           {product.name}
         </p>
-        <p className="text-gray-600 md:block hidden h-12 overflow-hidden">
+        {/* <p className="text-gray-600 md:block hidden h-12 overflow-hidden">
           {product.description}
-        </p>
+        </p> */}
         <div className="mt-4 flex items-center justify-between h-20 w-full gap-1">
           <p className="font-bold text-gray-700">${product.price}</p>
           <button

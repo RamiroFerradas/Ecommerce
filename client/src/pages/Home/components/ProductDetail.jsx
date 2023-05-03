@@ -1,5 +1,3 @@
-import React from "react";
-import { stopPropagation } from "../../../utils/stopPropagation";
 import { useCart } from "../../../hooks/useCart";
 
 export default function ProductDetail({ product, setSelectedProduct }) {
@@ -14,7 +12,7 @@ export default function ProductDetail({ product, setSelectedProduct }) {
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none h-screen">
         <div
           className="relative w-auto my-6 mx-auto max-w-3xl border-4 border-gray-800/25 rounded-xl"
-          onClick={stopPropagation}
+          onClick={(e) => e.stopPropagation()}
         >
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white p outline-none focus:outline-none justify-center items-center h-[65vh] md:h-[90vh] overflow-hidden">
             <button
@@ -45,11 +43,13 @@ export default function ProductDetail({ product, setSelectedProduct }) {
                   />
                   <p className="text-md"> {product.brand.name}</p>
                 </div>
-                <p className="text-xl font-semibold mb-1">Descripción</p>
+                <div className="h-80 overflow-y-auto">
+                  <p className="text-xl font-semibold mb-1">Descripción</p>
 
-                <p className="text-slate-500 text-lg leading-relaxed">
-                  {product.description}
-                </p>
+                  <p className="text-slate-500 md:text-lg leading-relaxed">
+                    {product.description}
+                  </p>
+                </div>
               </div>
             </div>
 

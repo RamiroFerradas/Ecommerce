@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useFetchProducts from "../../../hooks/useFetchProducts";
 import ProductCard from "./ProductCard";
 import Spinner from "../../../components/Spinner";
@@ -21,6 +21,13 @@ export default function Products() {
   );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div className="w-full md:w-3/4 p-6">
@@ -53,7 +60,10 @@ export default function Products() {
         <div className="flex justify-center items-center mt-4">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
-            onClick={() => setCurrentPage(currentPage - 1)}
+            onClick={() => {
+              setTimeout(() => scrollToTop(), 1);
+              setCurrentPage(currentPage - 1);
+            }}
             disabled={currentPage === 1}
           >
             Prev
@@ -63,19 +73,23 @@ export default function Products() {
           }).map((_, index) => (
             <button
               key={index}
-              className={`mx-1 py-1 px-2 rounded hover:bg-blue-500 hover:text-white focus:outline-none ${
-                currentPage === index + 1
-                  ? "bg-blue-500 text-white"
-                  : "bg-white text-blue-500"
-              }`}
-              onClick={() => paginate(index + 1)}
+              disabled={currentPage === index + 1}
+              className={`mx-1 py-1 px-2 rounded hover:bg-blue-500 hover:text-white focus:outline-none enabled:bg-blue-500 enabled:text-white disabled:bg-white disabled:text-blue-500
+              `}
+              onClick={() => {
+                setTimeout(() => scrollToTop(), 1);
+                paginate(index + 1);
+              }}
             >
               {index + 1}
             </button>
           ))}
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={() => setCurrentPage(currentPage + 1)}
+            onClick={() => {
+              setTimeout(() => scrollToTop(), 1);
+              setCurrentPage(currentPage + 1);
+            }}
             disabled={currentProducts.length < productsPerPage}
           >
             Next

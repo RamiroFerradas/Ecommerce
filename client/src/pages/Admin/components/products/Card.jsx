@@ -39,9 +39,11 @@ export default function Card({
       className="bg-white shadow rounded-lg p-4  w-full md:w-40 h-72 border border-gray-300 flex flex-col justify-around items-center"
     >
       <div>
-        <p className="text-sm font-bold text-center">{product.name}</p>
-        <p className="text-sm text-center">{product.brand.name}</p>
-        <div className="flex justify-center">
+        <div className="h-20">
+          <p className="text-sm font-bold text-center">{product.name}</p>
+          <p className="text-sm text-center">{product.brand.name}</p>
+        </div>
+        <div className="flex justify-center ">
           <img
             className="object-contain h-28"
             src={product.image_url}
