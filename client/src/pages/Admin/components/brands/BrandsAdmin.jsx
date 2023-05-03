@@ -28,14 +28,14 @@ export default function BrandsAdmin({
       </p>
       <ul className="flex flex-col gap-3">
         {allBrands.map((brand) => (
-          <li key={brand.id} className="flex">
+          <li key={brand.id} className="flex p-2 md:p-0">
             <img
               src={brand.logo_url}
               alt={brand.name}
               className="w-6 h-6 object-cover rounded-full mr-2"
             />
             <p>{brand.name}</p>
-            <div className="flex items-end gap-2 ml-auto">
+            <div className="flex items-end gap-2 ml-auto text-lg md:text-sm">
               <button
                 onClick={(e) => {
                   e.stopPropagation();

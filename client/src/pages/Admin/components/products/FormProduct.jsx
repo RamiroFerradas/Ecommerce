@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct, updateProduct } from "../../../../redux/productsSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -91,7 +91,6 @@ export default function FormProduct({
     }
     setErrors(errors);
 
-    // Si no hay errores, enviar el formulario
     if (Object.keys(errors).length === 0) {
       if (!productEditSelected) {
         dispatch(addProduct(productData));

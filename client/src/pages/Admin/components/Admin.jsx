@@ -87,7 +87,7 @@ export default function Admin() {
         </button>
       </div>
 
-      <div className="gap-5 w-screen  md:px-5 p-auto flex justify-center items-center md:flex-row flex-col">
+      <div className="gap-5 w-screen  md:px-5 p-auto flex justify-center items-center md:items-start md:flex-row flex-col">
         <ToggleProductBrand
           refProductsAdmin={refProductsAdmin}
           refBrandsAdmin={refBrandsAdmin}
