@@ -20,6 +20,7 @@
     "react/react-in-jsx-scope": "off",
     "no-unused-vars": "warn",
     "no-self-assign": "warn",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "no-useless-escape": "warn"
   }
 }

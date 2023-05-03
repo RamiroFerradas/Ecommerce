@@ -3,6 +3,10 @@ import { useDispatch } from "react-redux";
 import { addProduct, updateProduct } from "../../../../redux/productsSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
+import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
+
+import useFetchBrands from "../../../../hooks/useFetchBrands";
 
 export default function FormProduct({
   productEditSelected,
@@ -26,40 +30,71 @@ export default function FormProduct({
     },
   });
 
+  const { allBrands } = useFetchBrands();
+
   const [errors, setErrors] = useState({});
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    if (value !== "")
-      setErrors({
-        ...errors,
-        [name]: "",
+    if (name !== "logo_url") {
+      if (value !== "")
+        setErrors({
+          ...errors,
+          [name]: "",
+        });
+
+      setProductData({
+        ...productData,
+        [name]:
+          name !== "image_url"
+            ? value.charAt(0).toUpperCase() + value.slice(1)
+            : value,
       });
-    setProductData({
-      ...productData,
-      [name]:
-        name !== "image_url"
-          ? value.charAt(0).toUpperCase() + value.slice(1)
-          : value,
-    });
+    } else {
+      if (value === "")
+        setErrors({
+          ...errors,
+          brandUrl: "",
+        });
+
+      setProductData({
+        ...productData,
+        brand: {
+          ...productData.brand,
+          logo_url: value,
+        },
+      });
+    }
   };
-  const handleBrandInputChange = (event) => {
-    const { name, value } = event.target;
-    if (value !== "")
+
+  const handleBrandSelectChange = (item) => {
+    if (item?.label !== "") {
       setErrors({
         ...errors,
         brand: "",
       });
-    setProductData({
-      ...productData,
-      brand: {
-        ...productData.brand,
-        [name]:
-          name !== "logo_url"
-            ? value.charAt(0).toUpperCase() + value.slice(1)
-            : value,
-      },
-    });
+      const selectedBrand = allBrands.find(
+        (brand) => brand.name === item?.label
+      );
+
+      setProductData({
+        ...productData,
+        brand: {
+          ...productData.brand,
+          name: item?.label.charAt(0).toUpperCase() + item?.label.slice(1),
+          logo_url: selectedBrand?.logo_url,
+        },
+      });
+    } else {
+      setProductData({
+        ...productData,
+        brand: {
+          ...productData.brand,
+          name: item?.label.charAt(0).toUpperCase() + item?.label.slice(1),
+          logo_url: "",
+        },
+      });
+    }
   };
 
   const handleSubmit = (e) => {
@@ -67,6 +102,9 @@ export default function FormProduct({
     const errors = {};
     const required = "Campo requerido";
     const regex = /^[a-zA-Z\s]*$/;
+    const regexUrl = new RegExp(
+      /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|((\d{1,3}\.){3}\d{1,3}))(\:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i
+    );
     if (!productData.name) {
       errors.name = required;
     }
@@ -89,6 +127,14 @@ export default function FormProduct({
     if (!productData.brand.name) {
       errors.brand = required;
     }
+
+    if (!regexUrl.test(productData.brand.logo_url)) {
+      errors.brandUrl = "Url inválida";
+    }
+    if (!productData.brand.logo_url != "") {
+      errors.brandUrl = "";
+    }
+
     setErrors(errors);
 
     if (Object.keys(errors).length === 0) {
@@ -100,6 +146,13 @@ export default function FormProduct({
       closeModalFormProducts();
     }
   };
+
+  const optionsBrands = allBrands.map((brand) => {
+    return {
+      label: brand.name,
+      value: brand.id,
+    };
+  });
 
   return (
     <div className="rounded-3xl fixed md:inset-0 inset-1 bg-white/90 backdrop-blur-xs h-[96vh] md:w-[50vw] overflow-x-hidden overflow-y-auto m-auto ">
@@ -211,15 +264,19 @@ export default function FormProduct({
               >
                 Marca
               </label>
-              <input
+              <CreatableSelect
                 type="text"
                 name="name"
                 id="name"
                 placeholder="Ingresa el nombre de la marca"
-                className="w-full border placeholder:text-gray-600 border-gray-400 p-2 rounded"
-                value={productData.brand.name}
-                onChange={handleBrandInputChange}
+                className="w-full border placeholder:text-gray-600  p-2 rounded"
+                // value={productData.brand.name}
+                onChange={handleBrandSelectChange}
+                options={optionsBrands}
+                isClearable
+                openMenuOnClick={false}
               />
+
               {errors.brand && (
                 <p className="text-red-500 text-center">{errors.brand}</p>
               )}
@@ -238,8 +295,11 @@ export default function FormProduct({
                 placeholder="Ingresa la URL del logo de la marca"
                 className="w-full border border-gray-400 p-2 rounded placeholder:text-gray-600"
                 value={productData.brand.logo_url}
-                onChange={handleBrandInputChange}
+                onChange={handleInputChange}
               />
+              {errors.brandUrl && (
+                <p className="text-red-500 text-center">{errors.brandUrl}</p>
+              )}
             </div>
           </div>
         </div>

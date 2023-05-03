@@ -14,12 +14,16 @@ export default function FormBrands({
     logo_url: brandEditSelected ? brandEditSelected.logo_url : "",
   });
 
-  const [errorMessage, setErrorMessage] = useState();
+  const [error, setError] = useState({});
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    if (value !== "") setErrorMessage("");
+    if (value !== "")
+      setError({
+        ...error,
+        [name]: "",
+      });
     setBrandData({
       ...brandData,
       [name]:
@@ -32,9 +36,26 @@ export default function FormBrands({
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const errors = {};
+    const required = "Campo requerido";
+    const regexUrl = new RegExp(
+      /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|((\d{1,3}\.){3}\d{1,3}))(\:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i
+    );
+
+    if (!regexUrl.test(brandData.logo_url)) {
+      errors.logo_url = "Url inválida";
+    }
+    if (!brandData.logo_url != "") {
+      errors.logo_url = "";
+    }
+
     if (!brandData.name) {
-      setErrorMessage("Campo requerido");
-    } else {
+      errors.name = required;
+    }
+
+    setError(errors);
+
+    if (Object.keys(errors).length === 0) {
       if (!brandEditSelected) {
         dispatch(addBrand(brandData));
       } else {
@@ -72,16 +93,16 @@ export default function FormBrands({
             id="name"
             placeholder="Ingresa el nombre de la marca"
             className={`h-10 w-ful  border border-gray-400 p-2 rounded ${
-              errorMessage ? "pb-0 mb-0 rounded-b-none" : ""
+              error.name ? "pb-0 mb-0 rounded-b-none" : ""
             }`}
             value={brandData.name}
             onChange={handleInputChange}
           />
-          {errorMessage && (
-            <p className="text-red-500 whitespace-nowrap">{errorMessage}</p>
+          {error.name && (
+            <p className="text-red-500 whitespace-nowrap">{error.name}</p>
           )}
         </div>
-        <div className="">
+        <div className="h-24 ">
           <label
             htmlFor="logo_url"
             className="block text-gray-800 placeholder:text-gray-600 font-semibold mb-1 text-center"
@@ -97,6 +118,11 @@ export default function FormBrands({
             value={brandData.logo_url}
             onChange={handleInputChange}
           />
+          {error.logo_url && (
+            <p className="text-red-500 whitespace-nowrap text-center">
+              {error.logo_url}
+            </p>
+          )}
         </div>
         <div className="flex justify-end space-x-2">
           <button
