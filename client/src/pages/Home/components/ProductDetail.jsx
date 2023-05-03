@@ -39,7 +39,7 @@ export default function ProductDetail({ product, setSelectedProduct }) {
                   <img
                     src={product.brand.logo_url}
                     alt={product.brand.name}
-                    className="w-10 h-10 object-cover rounded-full mr-2"
+                    className="w-10 h-10 object-contain rounded-full mr-2"
                   />
                   <p className="text-md"> {product.brand.name}</p>
                 </div>

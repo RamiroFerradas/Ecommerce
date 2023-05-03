@@ -15,7 +15,10 @@ export default function Navbar() {
 
   const openSidebar = () => {
     const sidebar = document.getElementById("sidebar_menu");
-    sidebar.classList.toggle("hidden");
+    if (sidebar) {
+      sidebar?.classList?.toggle("hidden");
+      console.log(sidebar);
+    }
   };
 
   const { handleInputChangue, input } = useSearch();

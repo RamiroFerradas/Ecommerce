@@ -43,7 +43,7 @@ export default function Admin() {
     navigate("/")
   ) : (
     <div
-      className="container mx-auto px-4 back flex justify-center items-center flex-col "
+      className="container mx-auto md:mx-0 px-4 back flex justify-center items-center flex-col"
       onClick={() => {
         closeModalFormProducts();
         closeModalFormBrands();
@@ -108,20 +108,20 @@ export default function Admin() {
         </button>
       </div>
 
-      <div className="gap-5 w-full  md:px-5 p-auto flex justify-center items-center md:items-start md:flex-row flex-col">
+      <div className="gap-14 p-auto flex justify-center items-center md:items-start md:flex-row flex-col w-full">
         <ToggleProductBrand
           refProductsAdmin={refProductsAdmin}
           refBrandsAdmin={refBrandsAdmin}
         />
 
-        <div ref={refBrandsAdmin} className="hidden md:block">
+        <div ref={refBrandsAdmin} className="hidden md:block md:w-1/5">
           <BrandsAdmin
             setbrandEditSelected={setbrandEditSelected}
             setViewFormBrands={setViewFormBrands}
             viewToast={viewToast}
           />
         </div>
-        <div ref={refProductsAdmin} className="md:block min-h-[60vh]">
+        <div ref={refProductsAdmin} className="md:block min-h-[60vh] md:w-4/5">
           <ProductsAdmin
             setProductEditSelected={setProductEditSelected}
             setViewFormProducts={setViewFormProducts}

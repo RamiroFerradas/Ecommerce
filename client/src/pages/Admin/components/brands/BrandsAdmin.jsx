@@ -38,7 +38,7 @@ export default function BrandsAdmin({
   };
 
   return (
-    <div className="h-auto md:min-h-[60vh] bg-red-gray border border-gray-400 rounded-xl p-6 w-72 bg-gray-100">
+    <div className="h-auto md:min-h-[60vh] bg-red-gray border border-gray-400 rounded-xl p-6 w-screen bg-gray-100 md:w-auto">
       <p className="hidden md:block text-xl font-bold mb-4 text-center ">
         Marcas
       </p>

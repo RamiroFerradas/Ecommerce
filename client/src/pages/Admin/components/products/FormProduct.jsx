@@ -257,7 +257,7 @@ export default function FormProduct({
           </div>
 
           <div className="flex flex-col gap-8">
-            <div className="min-h-[21%] w-[22vw]">
+            <div className="min-h-[21%] md:w-[22vw]">
               <label
                 htmlFor="name"
                 className="block text-gray-800 font-semibold mb-1 text-center"
