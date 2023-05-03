@@ -75,7 +75,7 @@ Si completaste el extra 2. en el backend, podés mostrar también información d
 
 ### Homepage:
 
-- Al comenzar nos encontramos con la homepage donde podemos ver una grilla con los productos del ecommerce, donde se renderizaran 8 por pagina con su respectivo paginado en la parte inferior.
+- Al comenzar nos encontramos con la homepage donde podemos ver una grilla con los productos del ecommerce, donde se renderizaran 10 por pagina con su respectivo paginado en la parte inferior.
 - En la parte izquierda nos encontraremos con la sidebar la cual podremos filtrar por las marcas encontradas y ordenar por precio (mayor/menor) y alfabeticamnete (a-z / z-a)
 - En la parte superior tenemos una Navbar la cual tiene el logo de la pagina que redirige siempre a la homepage, un buscador de productos, un carrito de compras donde se mostraran la cantidad de productos en el mismo y un boton de ingresar.
 
