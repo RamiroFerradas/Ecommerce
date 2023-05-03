@@ -15,9 +15,7 @@ export default function Navbar() {
 
   const openSidebar = () => {
     const sidebar = document.getElementById("sidebar_menu");
-    if (sidebar) {
-      sidebar.classList.toggle("hidden");
-    }
+    sidebar.classList.toggle("hidden");
   };
 
   const { handleInputChangue, input } = useSearch();
@@ -25,7 +23,7 @@ export default function Navbar() {
     <nav className="bg-blue-100 border-gray-200 dark:bg-gray-900">
       <div
         onClick={() => setShowCartMenu(false)}
-        className="max-w-screen-xl flex flex-wrap items-center mx-auto p-4 justify-between md:order-1"
+        className="w-sceen flex flex-wrap items-center mx-auto p-4 justify-around md:order-1"
       >
         <NavLink to="/" className="flex items-center">
           <img src={logoSD} className="h-8 mr-3" alt="Flowbite Logo" />
@@ -63,12 +61,11 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="md:order-3 flex items-center justify-center gap-3 flex-row  h-12">
+        <div className="md:order-3 flex items-center justify-around flex-row  h-12 w-auto gap-1 ">
           <CartIcon
             showCartMenu={showCartMenu}
             setShowCartMenu={setShowCartMenu}
           />
-
           <Login setShowMenu={setShowMenu} showMenu={showMenu} />
         </div>
         <div className="flex flex-row w-screen gap-3 mt-3 md:hidden ">

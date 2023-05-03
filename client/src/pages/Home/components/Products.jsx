@@ -30,7 +30,7 @@ export default function Products() {
   };
 
   return (
-    <div className="w-full md:w-3/4 p-6">
+    <div className="w-full">
       {selectedProduct && (
         <ProductDetail
           product={selectedProduct}
@@ -56,7 +56,7 @@ export default function Products() {
         </div>
       )}
 
-      {allProducts.length > productsPerPage && (
+      {!loading && allProducts.length > productsPerPage && (
         <div className="flex justify-center items-center mt-4">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"

@@ -78,7 +78,7 @@ export default function CartMenu({ setShowCartMenu, showCartMenu }) {
               <div className="flex items-end gap-2 ml-auto">
                 <button
                   onClick={() => handleRemoveFromCart(product)}
-                  className={`bg-gray-800 text-white px-2 py-2 rounded-md hover:bg-red-500 focus:outline-none focus:bg-gray-700 `}
+                  className={` text-white px-2 py-2 rounded-md bg-red-500 hover:bg-red-800 focus:outline-none focus:bg-gray-700 `}
                 >
                   <BsFillCartXFill className="text-gray-200 text-lg" />
                 </button>

@@ -33,9 +33,11 @@ const ProductCard = ({ product, handleProductSelect }) => {
                 ? handleRemoveFromCart(product)
                 : handleAddToCart(product);
             }}
-            className={`bg-gray-800 text-white px-3 py-2 rounded-md ${
-              !itemExist ? `hover:bg-blue-500 ` : `hover:bg-red-500`
-            } focus:outline-none focus:bg-gray-700`}
+            className={` text-white px-3 py-2 rounded-md ${
+              !itemExist
+                ? `bg-blue-500 hover:bg-blue-800 `
+                : `bg-red-500 hover:bg-red-800`
+            } focus:outline-none`}
           >
             {!itemExist ? (
               <BsFillCartPlusFill className="text-gray-200 text-2xl" />

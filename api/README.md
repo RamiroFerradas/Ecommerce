@@ -46,9 +46,12 @@ Como mencionamos antes, deben ser posibles todas las operaciones CRUD, así que 
 
 <span id="stack"></span>
 
-#### Stack de tecnologías utilizado en el proyecto:
+### Stack
 
-PERN (PostgreSQL, Express, React & Node
+- Node
+- Express
+- PostgreSQL
+- Git
 
 <span id="instrucciones"></span>
 
