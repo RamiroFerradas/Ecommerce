@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useFetchProducts from "../../../hooks/useFetchProducts";
 import ProductCard from "./ProductCard";
 import Spinner from "../../../components/Spinner";

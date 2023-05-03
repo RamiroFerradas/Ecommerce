@@ -1,4 +1,4 @@
-![ATClogo](./src/assets/images/logo.jpeg)
+![SDlogo](./src/assets/images/logo.jpeg)
 
 # Prueba técnica - StoryDots
 
@@ -9,17 +9,14 @@
 ### Indice:
 
 <ul>
-<li> <a href="#intro">Intro</a>
+<li> <a href="#intro">- Intro</a>
  <li><a href="#obj">- Objetivos del Proyecto</a></li>
  <li><a href="#stack">- Stack de tecnologias</a></li>
  <li><a href="#instrucciones">- Instrucciones para comenzar</a></li>
  </li>
  <br>
- <li><a href="#recorrido"> Recorrido</a></li>
-<li> <a href="#landing">- Landing</a> 
- <li><a href="#createTeam">- Creacion de equipo</a></li>
-<li><a href="#myTeams">- Mis Equipos</a></li>
- <li><a href="#match">- Jugar</a></li></li>
+ <li><a href="#home">- Home page</a></li>
+<li> <a href="#admin">- Panel de administracion</a>
 
 <ul>
 
@@ -27,13 +24,20 @@
 
 ## Intro
 
-¿Alguna vez soñaste con ver un partido de fútbol en donde se enfrenten tus jugadores favoritos? Imaginate poder armar dos equipos de 5 jugadores cada uno, en donde no tengas ninguna limitación... posición, presupuesto, contrato, club, edad... tu mente es tu límite.
+En este coding challenge te vamos a proponer construir las bases de lo que luego podría transformarse en un ecommerce.
 
 <span id="obj"></span>
 
 ### Objetivos del Proyecto:
 
-En **Alquila tu Cancha** deseamos crear una web app `[responsive desktop y mobile]` que se pueda crear **"El partido de tus sueños"**, un partido de fútbol 5 en donde se enfrenten tus 10 jugadores favoritos, consumiendo la API https://apifootball.com/documentation/
+Vas a construir el frontend en React que muestre los productos que expone tu API en el backend. Podés usar solo React o Nextjs, lo que más te guste está bien :)
+
+Tu tarea es construir un frontend que va a cargar una lista de productos desde el backend, y debe mostrar todos los que haya. Podés elegir paginar los resultados o hacer scroll infinito. Además, al hacer click en un producto el usuario debe poder ver una vista de detalle de ese producto, ya sea un modal en esa misma home o una página dedicada para el producto.
+
+En el listado de productos, debe mostrarse la imagen, el nombre y el precio del producto. En la vista de detalle debe mostrarse, además, la descripción del producto.
+Extras
+Podés implementar una vista de “administrador” donde permitirle al usuario realizar todas las operaciones CRUD desde el frontend. Otro extra posible para este punto es solamente mostrar la vista de admin luego de que el usuario se logee con contraseña.
+Si completaste el extra 2. en el backend, podés mostrar también información de la marca (por ejemplo el logo) en la vista de los productos.
 
 <span id="stack"></span>
 
@@ -67,7 +71,7 @@ En **Alquila tu Cancha** deseamos crear una web app `[responsive desktop y mobil
 
 ## Recorrido:
 
-<span id="landing"></span>
+<span id="home"></span>
 
 ### Homepage:
 
@@ -86,7 +90,8 @@ En **Alquila tu Cancha** deseamos crear una web app `[responsive desktop y mobil
 - Al clickear sobre un producto se nos desplegara la informacion del mismo con la posibilidad de agregarlo al carrito nueamente
 
 <p align="left"><img height="200" src="./src/assets/images/Screenshots/product_detail.jpg" alt="usermenu" /><p>
-<span id="createTeam"></span>
+
+<span id="admin"></span>
 
 ### Panel de administracion:
 

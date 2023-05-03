@@ -1,4 +1,4 @@
-<p align="center"><img height="100" width="300"  src="./Assets/ScreenShots/wannabe.png" /><p>
+![SDlogo](../client/src/assets/images/logo.jpeg)
 
 # Prueba técnica - StoryDots
 
@@ -23,6 +23,12 @@
 
 <span id="inicio"></span>
 <span id="obj"></span>
+
+<span id="intro"></span>
+
+## Intro
+
+En este coding challenge te vamos a proponer construir las bases de lo que luego podría transformarse en un ecommerce.
 
 ## Objetivos del Proyecto
 

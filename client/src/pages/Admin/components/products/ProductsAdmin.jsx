@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import useFetchProducts from "../../../../hooks/useFetchProducts";
 import Card from "./Card";
-import Toast from "../../../../components/Toast";
 
 export default function ProductsAdmin({
   setProductEditSelected,
