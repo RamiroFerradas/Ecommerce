@@ -61,23 +61,20 @@ const insertBrand = async (data) => {
 };
 
 // GET (ONE) BRAND BY ID OR NAME
-const getBrandByIdOrName = async (idOrName) => {
+const getBrandById = async (id) => {
   try {
     const brand = await Brand.findOne({
-      where: {
-        [Op.or]: [{ id: idOrName }, { name: idOrName }],
-      },
+      where: { id },
+      attributes: ["id", "name", "logo_url"],
     });
 
     if (!brand) {
-      throw new Error(
-        `No se encontró una marca con el ID o nombre '${idOrName}'`
-      );
+      throw new Error(`No se encontró una marca con el ID '${id}'`);
     }
 
     return brand;
   } catch (e) {
-    console.error(`${ERROR}, getBrandByIdOrName --→ ${e}`);
+    console.error(`${ERROR}, getBrandById --→ ${e}`);
     return e.message;
   }
 };
@@ -143,7 +140,7 @@ const deleteBrand = async (identifier) => {
 module.exports = {
   getBrands,
   insertBrand,
-  getBrandByIdOrName,
+  getBrandById,
   updateBrand,
   deleteBrand,
 };

@@ -11,7 +11,7 @@ const authMiddleware = require("../../auth");
 const router = Router();
 
 // ---------- GET BRANDS // GET BRANDS BY NAME ----------
-const brandsErrorMessage = "Error @ routes/Brands/index.js --> ";
+const ERROR = "Error @ routes/Brands/index.js --> ";
 router.get("/", async (req, res) => {
   try {
     const { name } = req.query;
@@ -31,22 +31,24 @@ router.get("/", async (req, res) => {
       }
     }
   } catch (e) {
-    res.status(400).send(`${brandsErrorMessage} ${e.message}`);
+    console.error(`${ERROR} ${e.message}`);
+    return e.message;
   }
 });
 
-// ---------- GET BRAND BY ID OR NAME ----------
-router.get("/:idOrName", async (req, res) => {
+// ---------- GET BRAND BY ID----------
+router.get("/:id", async (req, res) => {
   try {
-    const { idOrName } = req.params;
-    const brand = await getBrandByIdOrName(idOrName);
+    const { id } = req.params;
+    const brand = await getBrandById(id);
     if (brand) {
       res.json(brand);
     } else {
-      res.status(404).send("No se encontró ninguna marca con ese ID o nombre.");
+      res.status(404).send("No se encontró ninguna marca con ese ID.");
     }
   } catch (e) {
-    res.status(404).send(ERROR, e);
+    console.error(`${ERROR} ${e.message}`);
+    return e.message;
   }
 });
 
@@ -55,7 +57,8 @@ router.post("/", authMiddleware, async (req, res) => {
   try {
     res.json(await insertBrand(req.body));
   } catch (e) {
-    res.status(404).send(ERROR, e);
+    console.error(`${ERROR} ${e.message}`);
+    return e.message;
   }
 });
 
@@ -65,7 +68,8 @@ router.put("/:idOrName", authMiddleware, async (req, res) => {
     const { idOrName } = req.params;
     res.json(await updateBrand(idOrName, req.body));
   } catch (e) {
-    res.status(404).send(ERROR, e);
+    console.error(`${ERROR} ${e.message}`);
+    return e.message;
   }
 });
 
@@ -75,7 +79,8 @@ router.delete("/:idOrName", authMiddleware, async (req, res) => {
     const { idOrName } = req.params;
     res.json(await deleteBrand(idOrName));
   } catch (e) {
-    res.status(404).send(ERROR, e);
+    console.error(`${ERROR} ${e.message}`);
+    return e.message;
   }
 });
 

@@ -40,3 +40,5 @@ Si no podés completar alguna parte de los requerimientos, incluí una explicaci
 Cuando diseñamos este challenge no pensamos en incluir nada tramposo ni complicado de gusto, así que CUALQUIER duda que tengas nos podés escribir y consultar a coding-challenge@storydots.app.
 
 Mucha suerte!
+Forkear el repositorio para tener una copia del mismo en sus cuentas 2. Clonar el repositorio en sus computadoras para comenzar a trabajar
+Tendrán un `boilerplate` con la estructura general del servidor.

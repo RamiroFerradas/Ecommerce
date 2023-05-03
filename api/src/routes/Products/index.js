@@ -7,13 +7,13 @@ const {
   insertProduct,
   deleteProduct,
   updateProduct,
-} = require("../../Controllers/Products/Products.js");
+} = require("../../Controllers/Products/index.js");
 const authMiddleware = require("../../auth.js");
 
 const router = Router();
 
 // ---------- GET PRODUCTS // GET PRODUCTS BY NAME ----------
-const productsErrorMessage = "Error @ routes/Products/index.js --> ";
+const ERROR = "Error @ routes/Products/index.js --> ";
 router.get("/", async (req, res) => {
   try {
     const { name } = req.query;
@@ -28,7 +28,8 @@ router.get("/", async (req, res) => {
       }
     }
   } catch (e) {
-    res.status(400).send(`${productsErrorMessage} ${e.message}`);
+    console.error(`${ERROR} ${e.message}`);
+    return e.message;
   }
 });
 
@@ -38,9 +39,16 @@ router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    res.json(await getProductsById(id));
+    const product = await getProductsById(id);
+
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404).send("No se encontró ningun producto con ese ID.");
+    }
   } catch (e) {
-    res.status(404).send(ERROR, e);
+    console.error(`${ERROR} ${e.message}`);
+    return e.message;
   }
 });
 
@@ -50,7 +58,8 @@ router.post("/", authMiddleware, async (req, res) => {
   try {
     res.json(await insertProduct(req.body));
   } catch (e) {
-    res.status(404).send(ERROR, e);
+    console.error(`${ERROR} ${e.message}`);
+    return e.message;
   }
 });
 
@@ -60,7 +69,8 @@ router.put("/:id", authMiddleware, async (req, res) => {
     const { id } = req.params;
     res.json(await updateProduct(id, req.body));
   } catch (e) {
-    res.status(404).send(ERROR, e);
+    console.error(`${ERROR} ${e.message}`);
+    return e.message;
   }
 });
 
@@ -70,7 +80,8 @@ router.delete("/:id", authMiddleware, async (req, res) => {
     const { id } = req.params;
     res.json(await deleteProduct(id, req.body));
   } catch (e) {
-    res.status(404).send(ERROR, e);
+    console.error(`${ERROR} ${e.message}`);
+    return e.message;
   }
 });
 
