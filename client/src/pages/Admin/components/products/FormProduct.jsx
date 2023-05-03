@@ -9,6 +9,7 @@ import useFetchBrands from "../../../../hooks/useFetchBrands";
 export default function FormProduct({
   productEditSelected,
   closeModalFormProducts,
+  viewToast,
 }) {
   const dispatch = useDispatch();
   const [productData, setProductData] = useState({
@@ -99,7 +100,7 @@ export default function FormProduct({
     e.preventDefault();
     const errors = {};
     const required = "Campo requerido";
-    const regex = /^[a-zA-Z\s]*$/;
+    const regex = /^[a-zA-Z0-9\s"]*$/;
     const regexUrl = new RegExp(
       /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|((\d{1,3}\.){3}\d{1,3}))(\:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i
     );
@@ -134,11 +135,12 @@ export default function FormProduct({
     }
 
     setErrors(errors);
-
     if (Object.keys(errors).length === 0) {
       if (!productEditSelected) {
+        viewToast(`producto creado con exito`);
         dispatch(addProduct(productData));
       } else {
+        viewToast(`producto modificado con exito`);
         dispatch(updateProduct(productEditSelected.id, productData));
       }
       closeModalFormProducts();
@@ -164,10 +166,10 @@ export default function FormProduct({
         onSubmit={(e) => {
           handleSubmit(e);
         }}
-        className=" justify-start items-center flex  fixed inset-0 outline-none focus:outline-none flex-col mt-5 md:p-1"
+        className=" justify-start items-center flex  fixed inset-0 outline-none focus:outline-none flex-col mt-5 md:p-1 "
       >
         <div
-          className="flex flex-col md:flex-row gap-10"
+          className="flex flex-col md:flex-row gap-10  h-full"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex flex-col gap-5  w-80">
@@ -255,7 +257,7 @@ export default function FormProduct({
           </div>
 
           <div className="flex flex-col gap-8">
-            <div className="min-h-[21%]">
+            <div className="min-h-[21%] w-[22vw]">
               <label
                 htmlFor="name"
                 className="block text-gray-800 font-semibold mb-1 text-center"
@@ -267,12 +269,14 @@ export default function FormProduct({
                 name="name"
                 id="name"
                 placeholder="Ingresa el nombre de la marca"
-                className="w-full border placeholder:text-gray-600  p-2 rounded"
-                // value={productData.brand.name}
+                className=" border placeholder:text-gray-600 p-2 rounded"
                 onChange={handleBrandSelectChange}
                 options={optionsBrands}
                 isClearable
                 openMenuOnClick={false}
+                formatCreateLabel={(inputValue) =>
+                  `Crear marca "${inputValue}"`
+                }
               />
 
               {errors.brand && (
@@ -302,17 +306,17 @@ export default function FormProduct({
           </div>
         </div>
 
-        <div className="flex justify-center space-x-2  w-full h-32 items-end">
+        <div className="flex justify-center space-x-2  w-full h- items-center h-12">
           <button
             type="button"
-            className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded h-10"
+            className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-1 px-4 rounded w-28"
             onClick={closeModalFormProducts}
           >
             Cancelar
           </button>
           <button
             type="submit"
-            className="  h-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 w-28 rounded"
           >
             {productEditSelected ? ` Guardar cambios` : `Cargar`}
           </button>

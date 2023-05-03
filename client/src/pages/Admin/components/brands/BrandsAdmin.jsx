@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { deleteBrand } from "../../../../redux/brandsSlice";
-import Toast from "../../../../components/Toast";
 import Swal from "sweetalert2";
 
 export default function BrandsAdmin({
   setbrandEditSelected,
   setViewFormBrands,
+  viewToast,
 }) {
   const { allBrands } = useFetchBrands();
   const dispatch = useDispatch();
@@ -18,9 +18,6 @@ export default function BrandsAdmin({
     setViewFormBrands(true);
     setbrandEditSelected(brand);
   };
-
-  const [showToast, setShowToast] = useState(false);
-  const [messageToast, setMessageToast] = useState("");
 
   const handleDeleteBrand = (brand) => {
     Swal.fire({
@@ -35,30 +32,28 @@ export default function BrandsAdmin({
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(deleteBrand(brand.id));
-        setMessageToast(`Se eliminó la marca ${brand.name}`);
-        setShowToast(true);
-        setTimeout(() => {
-          setShowToast(false);
-          setMessageToast("");
-        }, 3000);
+        viewToast(`Se eliminó la marca ${brand.name}`);
       }
     });
   };
 
   return (
     <div className="h-auto md:min-h-[60vh] bg-red-gray border border-gray-400 rounded-xl p-6 w-72 bg-gray-100">
-      <Toast show={showToast} message={messageToast} />
       <p className="hidden md:block text-xl font-bold mb-4 text-center ">
         Marcas
       </p>
       <ul className="flex flex-col gap-3">
         {allBrands.map((brand) => (
           <li key={brand.id} className="flex p-2 md:p-0">
-            <img
-              src={brand.logo_url}
-              alt={brand.name}
-              className="w-6 h-6 object-cover rounded-full mr-2"
-            />
+            {brand.logo_url ? (
+              <img
+                src={brand.logo_url}
+                alt={brand.name}
+                className="w-6 h-6 object-contain rounded-full mr-2"
+              />
+            ) : (
+              <div className="flex p-2 md:p-0 w-8"></div>
+            )}
             <p>{brand.name}</p>
             <div className="flex items-end gap-2 ml-auto text-lg md:text-sm">
               <button

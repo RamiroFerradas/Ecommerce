@@ -1,12 +1,14 @@
+import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
+import { deleteProduct } from "../../../../redux/productsSlice";
 
 export default function Card({
   product,
   setViewFormProducts,
   setProductEditSelected,
-  setMessageToast,
-  setShowToast,
+  viewToast,
 }) {
+  const dispatch = useDispatch();
   const handleEditProduct = (product) => {
     setViewFormProducts(true);
     setProductEditSelected(product);
@@ -24,12 +26,8 @@ export default function Card({
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        setMessageToast(`Se eliminó el producto ${product.name}`);
-        setShowToast(true);
-        setTimeout(() => {
-          setShowToast(false);
-          setMessageToast("");
-        }, 3000);
+        dispatch(deleteProduct(product.id));
+        viewToast(`Producto eliminado`);
       }
     });
   };

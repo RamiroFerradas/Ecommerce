@@ -6,15 +6,26 @@ import FormBrands from "./brands/FormBrands";
 import ToggleProductBrand from "./ToggleProductBrand";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import Toast from "../../../components/Toast";
 
 export default function Admin() {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth0();
   const [productEditSelected, setProductEditSelected] = useState(false);
   const [brandEditSelected, setbrandEditSelected] = useState(false);
-
   const [viewFormProducts, setViewFormProducts] = useState(false);
   const [viewFormBrands, setViewFormBrands] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [messageToast, setMessageToast] = useState("");
+
+  const viewToast = (message) => {
+    setMessageToast(message);
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+      setMessageToast("");
+    }, 3000);
+  };
 
   const closeModalFormProducts = () => {
     setViewFormProducts(false);
@@ -38,6 +49,8 @@ export default function Admin() {
         closeModalFormBrands();
       }}
     >
+      <Toast show={showToast} message={messageToast} />
+
       {viewFormProducts ? (
         <div
           className="fixed top-0 w-screen h-screen bg-black/80 md:backdrop-blur-xs"
@@ -50,6 +63,7 @@ export default function Admin() {
             <FormProduct
               productEditSelected={productEditSelected}
               closeModalFormProducts={closeModalFormProducts}
+              viewToast={viewToast}
             />
           </div>
         </div>
@@ -61,6 +75,7 @@ export default function Admin() {
           <FormBrands
             brandEditSelected={brandEditSelected}
             closeModalFormBrands={closeModalFormBrands}
+            viewToast={viewToast}
           />
         </div>
       ) : (
@@ -103,12 +118,14 @@ export default function Admin() {
           <BrandsAdmin
             setbrandEditSelected={setbrandEditSelected}
             setViewFormBrands={setViewFormBrands}
+            viewToast={viewToast}
           />
         </div>
         <div ref={refProductsAdmin} className="md:block min-h-[60vh]">
           <ProductsAdmin
             setProductEditSelected={setProductEditSelected}
             setViewFormProducts={setViewFormProducts}
+            viewToast={viewToast}
           />
         </div>
       </div>

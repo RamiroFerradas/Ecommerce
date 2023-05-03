@@ -7,6 +7,7 @@ import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
 export default function FormBrands({
   brandEditSelected,
   closeModalFormBrands,
+  viewToast,
 }) {
   const dispatch = useDispatch();
   const [brandData, setBrandData] = useState({
@@ -42,11 +43,8 @@ export default function FormBrands({
       /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|((\d{1,3}\.){3}\d{1,3}))(\:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i
     );
 
-    if (!regexUrl.test(brandData.logo_url)) {
+    if (brandData.logo_url !== "" && !regexUrl.test(brandData.logo_url)) {
       errors.logo_url = "Url inválida";
-    }
-    if (!brandData.logo_url != "") {
-      errors.logo_url = "";
     }
 
     if (!brandData.name) {
@@ -58,8 +56,10 @@ export default function FormBrands({
     if (Object.keys(errors).length === 0) {
       if (!brandEditSelected) {
         dispatch(addBrand(brandData));
+        viewToast(`marca modificad con exito`);
       } else {
         dispatch(updateBrand(brandEditSelected.id, brandData));
+        viewToast(`marca modificad con exito`);
       }
       closeModalFormBrands();
     }

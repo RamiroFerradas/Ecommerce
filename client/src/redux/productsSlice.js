@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createSlice } from "@reduxjs/toolkit";
+import { getBrands } from "./brandsSlice";
 
 const url = `/products`;
 
@@ -97,6 +98,7 @@ export const addProduct = (productData) => async (dispatch) => {
     });
 
     dispatch(getProducts());
+    dispatch(getBrands());
   } catch (error) {
     console.error(error.message);
   }

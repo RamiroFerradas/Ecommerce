@@ -93,5 +93,12 @@ En **Alquila tu Cancha** deseamos crear una web app `[responsive desktop y mobil
 - La misma Navbar en la parte superior.
 - Al ingresar podemos ver dos botones para crear nueva marca o producto lso cuales nos despliega un formulario para cada uno.
 - A la izqueirda podemos ver todas las marcas cargadas con la posibilidad de editarlas/eliminarlas.
-- a la derecha la grilla de productos cargados con la posibilidad de editarlos/ eliminarlos
+- a la derecha la grilla de productos cargados con la posibilidad de editarlos/ eliminarlos.
 <p align="left"><img height="200" src="./src/assets/images/Screenshots/admin_panel.jpg" alt="admin_panel" /><p>
+
+- Al cargar/ editar una marca se nos abre el siguiente formulario, al editar aparecen los datos precargados con algunas validaciones de nombre/url.
+
+<p align="left"><img height="200" src="./src/assets/images/Screenshots/form_brand.jpg" alt="form_brand" /><p>
+
+- Al cargar/editar un producto se nos abre el siguiente formulario, al editar aparecen los datos precargados con algunas validaciones de nombre/url, En el apartado de marcas nos aparece un selector para elegir una marca ya cargada o podemos tipear el nombre de una nueva.
+<p align="left"><img height="200" src="./src/assets/images/Screenshots/form_products.jpg" alt="form_products" /><p>
