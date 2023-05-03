@@ -44,13 +44,11 @@ const insertProduct = async (data) => {
 
     name = name[0].toUpperCase() + name.slice(1);
 
-    // Buscar la marca existente o crear una nueva
     const [foundOrCreatedBrand] = await Brand.findOrCreate({
       where: { name: brand.name },
       defaults: { logo_url: brand.logo_url },
     });
 
-    // Si se proporcionó un nuevo logo_url, actualizar la marca
     if (brand.logo_url && brand.logo_url !== foundOrCreatedBrand.logo_url) {
       await Brand.update(
         { logo_url: brand.logo_url },
@@ -60,7 +58,6 @@ const insertProduct = async (data) => {
       );
     }
 
-    // Buscar el producto existente con el mismo nombre y marca
     const existingProduct = await Product.findOne({
       where: { name },
       include: [
@@ -74,7 +71,6 @@ const insertProduct = async (data) => {
       );
     }
 
-    // Crear el nuevo producto con la marca encontrada o creada
     const postProduct = await Product.create({
       name,
       description,
@@ -119,14 +115,12 @@ const getProductsById = async (id) => {
 
 const updateProduct = async (productId, data) => {
   try {
-    // Buscar el producto por su ID
     const product = await Product.findByPk(productId);
 
     if (!product) {
       throw new Error(`No se encontró un producto con el ID '${productId}'`);
     }
 
-    // Actualizar el producto con los nuevos datos
     const { name, description, image_url, price, brand } = data;
     if (name) {
       product.name = name;
@@ -142,13 +136,11 @@ const updateProduct = async (productId, data) => {
     }
 
     if (brand) {
-      // Buscar la marca existente o crear una nueva
       const [foundOrCreatedBrand] = await Brand.findOrCreate({
         where: { name: brand.name },
         defaults: { logo_url: brand.logo_url },
       });
 
-      // Si se proporcionó un nuevo logo_url, actualizar la marca
       if (brand.logo_url && brand.logo_url !== foundOrCreatedBrand.logo_url) {
         await Brand.update(
           { logo_url: brand.logo_url },
@@ -161,7 +153,6 @@ const updateProduct = async (productId, data) => {
       product.brandId = foundOrCreatedBrand.id;
     }
 
-    // Guardar los cambios en la base de datos
     await product.save();
 
     const message = `Producto con ID '${productId}' actualizado correctamente`;
