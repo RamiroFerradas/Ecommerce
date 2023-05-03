@@ -12,7 +12,7 @@ export default function ProductsAdmin({
 
   const { allProducts } = useFetchProducts();
   return (
-    <div className="bg-gray-100 border border-gray-400 rounded-xl p-2 w-full min-h-[60vh]">
+    <div className="bg-gray-100 border border-gray-400 rounded-xl p-2 w-screen md:w-[75vw] min-h-[60vh]">
       <Toast show={showToast} message={messageToast} />
 
       <p className="hidden md:block text-xl font-bold mb-4 text-center ">
