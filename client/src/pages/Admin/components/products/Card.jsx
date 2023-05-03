@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteProduct } from "../../../../redux/productsSlice";
+import Swal from "sweetalert2";
+import Toast from "../../../../components/Toast";
 
 export default function Card({
   product,
   setViewFormProducts,
   setProductEditSelected,
+  setMessageToast,
+  setShowToast,
 }) {
   const dispatch = useDispatch();
 
@@ -14,8 +18,28 @@ export default function Card({
     setProductEditSelected(product);
   };
 
-  const handleDeleteProduct = (productId) => {
-    dispatch(deleteProduct(productId));
+  const handleDeleteProduct = (product) => {
+    Swal.fire({
+      title: "Eliminar producto",
+      text: `Desea eliminar el producto ${product.name}?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "##3B82F6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Eliminar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // dispatch(deleteProduct(product.id));
+
+        setMessageToast(`Se eliminó el producto ${product.name}`);
+        setShowToast(true);
+        setTimeout(() => {
+          setShowToast(false);
+          setMessageToast("");
+        }, 3000);
+      }
+    });
   };
   return (
     <li
@@ -46,7 +70,7 @@ export default function Card({
         </button>
         <button
           className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 rounded text-sm"
-          onClick={() => handleDeleteProduct(product.id)}
+          onClick={() => handleDeleteProduct(product)}
         >
           Borrar
         </button>
