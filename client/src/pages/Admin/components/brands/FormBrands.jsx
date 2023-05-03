@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addBrand, updateBrand } from "../../../../redux/brandsSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function FormBrands({
   brandEditSelected,
@@ -12,11 +14,14 @@ export default function FormBrands({
     logo_url: brandEditSelected ? brandEditSelected.logo_url : "",
   });
 
+  const [errorMessage, setErrorMessage] = useState();
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
+    if (value !== "") setErrorMessage("");
     setBrandData({
       ...brandData,
-
       [name]:
         name !== "logo_url"
           ? value.charAt(0).toUpperCase() + value.slice(1)
@@ -27,27 +32,37 @@ export default function FormBrands({
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!brandEditSelected) {
-      dispatch(addBrand(brandData));
+    if (!brandData.name) {
+      setErrorMessage("Campo requerido");
     } else {
-      dispatch(updateBrand(brandEditSelected.id, brandData));
+      if (!brandEditSelected) {
+        dispatch(addBrand(brandData));
+      } else {
+        dispatch(updateBrand(brandEditSelected.id, brandData));
+      }
+      closeModalFormBrands();
     }
-    closeModalFormBrands();
   };
 
   return (
     <div
-      className="rounded-3xl fixed md:inset-0 inset-1 bg-black/80 backdrop-blur-xs h-[45vh] md:w-[30vw] overflow-x-hidden overflow-y-auto m-auto"
+      className="rounded-3xl fixed md:inset-0 inset-1 bg-white/90 backdrop-blur-xs h-[50vh] md:w-[30vw] overflow-x-hidden overflow-y-auto m-auto"
       onClick={(e) => e.stopPropagation()}
     >
+      <div className="float-right text-red-500">
+        <button onClick={closeModalFormBrands} className="p-2">
+          <FontAwesomeIcon icon={faRectangleXmark} />
+        </button>
+      </div>
+
       <form
         onSubmit={(e) => handleSubmit(e)}
         className="space-y-6 justify-center items-center flex  fixed inset-0 outline-none focus:outline-none flex-col mt-5"
       >
-        <div>
+        <div className="h-24 w-full flex justify-start flex-col items-center">
           <label
             htmlFor="name"
-            className="block text-gray-200 font-semibold mb-1 text-center"
+            className="block text-gray-800 placeholder:text-gray-600 font-semibold mb-1 text-center"
           >
             Marca
           </label>
@@ -56,15 +71,20 @@ export default function FormBrands({
             name="name"
             id="name"
             placeholder="Ingresa el nombre de la marca"
-            className="w-full border border-gray-400 p-2 rounded"
+            className={`h-10 w-ful  border border-gray-400 p-2 rounded ${
+              errorMessage ? "pb-0 mb-0 rounded-b-none" : ""
+            }`}
             value={brandData.name}
             onChange={handleInputChange}
           />
+          {errorMessage && (
+            <p className="text-red-500 whitespace-nowrap">{errorMessage}</p>
+          )}
         </div>
         <div className="">
           <label
             htmlFor="logo_url"
-            className="block text-gray-200 font-semibold mb-1 text-center"
+            className="block text-gray-800 placeholder:text-gray-600 font-semibold mb-1 text-center"
           >
             URL del logo de la marca
           </label>

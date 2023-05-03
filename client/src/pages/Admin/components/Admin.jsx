@@ -33,11 +33,19 @@ export default function Admin() {
       }}
     >
       {viewFormProducts ? (
-        <div className="fixed top-0 w-screen h-screen bg-black/80 md:backdrop-blur-xs">
-          <FormProduct
-            productEditSelected={productEditSelected}
-            closeModalFormProducts={closeModalFormProducts}
-          />
+        <div
+          className="fixed top-0 w-screen h-screen bg-black/80 md:backdrop-blur-xs"
+          onClick={() => {
+            closeModalFormProducts();
+            closeModalFormBrands();
+          }}
+        >
+          <div onClick={(e) => e.stopPropagation()}>
+            <FormProduct
+              productEditSelected={productEditSelected}
+              closeModalFormProducts={closeModalFormProducts}
+            />
+          </div>
         </div>
       ) : (
         false
