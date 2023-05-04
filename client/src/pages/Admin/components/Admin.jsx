@@ -53,7 +53,7 @@ export default function Admin() {
 
       {viewFormProducts ? (
         <div
-          className="fixed top-0 w-screen h-screen bg-black/80 md:backdrop-blur-xs"
+          className="fixed top-0 w-screen z-50 inset-0 h-screen bg-black/80 md:backdrop-blur-xs"
           onClick={() => {
             closeModalFormProducts();
             closeModalFormBrands();
@@ -71,7 +71,7 @@ export default function Admin() {
         false
       )}
       {viewFormBrands ? (
-        <div className="fixed top-0 w-screen h-screen bg-black/80 md:backdrop-blur-xs">
+        <div className="fixed inset-0 z-50 w-screen h-screen bg-black/80 md:backdrop-blur-xs">
           <FormBrands
             brandEditSelected={brandEditSelected}
             closeModalFormBrands={closeModalFormBrands}

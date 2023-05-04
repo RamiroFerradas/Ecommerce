@@ -13,7 +13,7 @@ export default function App() {
     <div onClick={hideUserMenu} className="">
       <Navbar />
       <div className="flex w-full justify-center md:items-start items-center md:flex-row flex-col">
-        <div className="w-2/12">
+        <div className="w-2/12 ">
           <Sidebar />
         </div>
         <div className="w-10/12">
