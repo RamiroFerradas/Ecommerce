@@ -59,7 +59,7 @@ export default function Products() {
       {!loading && allProducts.length > productsPerPage && (
         <div className="flex justify-center items-center mt-4">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+            className="bg-blue-500 enabled:hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
             onClick={() => {
               setTimeout(() => scrollToTop(), 1);
               setCurrentPage(currentPage - 1);
@@ -85,7 +85,7 @@ export default function Products() {
             </button>
           ))}
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-500 enabled:hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onClick={() => {
               setTimeout(() => scrollToTop(), 1);
               setCurrentPage(currentPage + 1);
