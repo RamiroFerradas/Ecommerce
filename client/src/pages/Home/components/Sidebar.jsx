@@ -41,7 +41,7 @@ export default function Sidebar() {
               <span className="ml-2">Todas</span>
             </label>
           </li>
-          {[]?.map(({ name, id }) => (
+          {allBrands?.map(({ name, id }) => (
             <li key={id}>
               <label className="inline-flex items-center">
                 <input

@@ -37,10 +37,10 @@ export default function Card({
       className="bg-white shadow rounded-lg p-4  w-full md:w-40 h-72 border border-gray-300 flex flex-col justify-around items-center"
     >
       <div>
-        <div className="h-20">
+        <div className="h-10 overflow-hidden">
           <p className="text-sm font-bold text-center">{product.name}</p>
-          <p className="text-sm text-center">{product.brand.name}</p>
         </div>
+
         <div className="flex justify-center ">
           <img
             className="object-contain h-28"
@@ -48,6 +48,7 @@ export default function Card({
             alt={product.brand.name}
           />
         </div>
+        <p className="text-sm text-center">{product.brand.name}</p>
         <p className="mt-2 text-gray-600 text-center">${product.price}</p>
       </div>
       <div className="mt-4 flex gap-2">

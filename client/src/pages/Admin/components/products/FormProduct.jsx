@@ -154,6 +154,10 @@ export default function FormProduct({
     };
   });
 
+  const selectedBrandOption = optionsBrands.find(
+    (option) => option.label === productData.brand.name
+  );
+
   return (
     <div className="rounded-3xl fixed md:inset-0 inset-1 bg-white/90 backdrop-blur-xs h-[96vh] md:w-[50vw] overflow-x-hidden overflow-y-auto m-auto ">
       <button
@@ -267,6 +271,7 @@ export default function FormProduct({
               <CreatableSelect
                 type="text"
                 name="name"
+                value={selectedBrandOption}
                 id="name"
                 placeholder="Ingresa el nombre de la marca"
                 className=" border placeholder:text-gray-600 p-2 rounded"
