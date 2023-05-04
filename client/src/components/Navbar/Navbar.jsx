@@ -23,7 +23,7 @@ export default function Navbar() {
   const { handleInputChangue, input } = useSearch();
   return (
     <nav
-      className="bg-blue-200 border-gray-200 items-center mx-auto p-4 md:justify-around md:order-1 flex md:gap-16 flex-wrap md:flex-nowrap justify-around"
+      className="bg-blue-200 border-gray-200 items-center mx-auto py-4 md:justify-around md:order-1 flex flex-wrap justify-around"
       onClick={() => setShowCartMenu(false)}
     >
       <NavLink to="/" className="flex items-center order 1">
