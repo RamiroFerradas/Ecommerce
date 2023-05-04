@@ -314,16 +314,16 @@ export default function FormProduct({
         <div className="flex justify-center space-x-2  w-full h- items-center h-12">
           <button
             type="button"
-            className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-1 px-4 rounded w-28"
+            className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded w-28"
             onClick={closeModalFormProducts}
           >
             Cancelar
           </button>
           <button
             type="submit"
-            className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 w-28 rounded"
+            className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-28 rounded"
           >
-            {productEditSelected ? ` Guardar cambios` : `Cargar`}
+            {productEditSelected ? ` Guardar` : `Cargar`}
           </button>
         </div>
       </form>
