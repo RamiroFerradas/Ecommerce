@@ -10,7 +10,6 @@ import CartMenu from "./CartMenu";
 import UserMenu from "./UserMenu";
 
 export default function Navbar() {
-  const [showMenu, setShowMenu] = useState(false);
   const [showCartMenu, setShowCartMenu] = useState(false);
 
   const openSidebar = () => {
@@ -73,10 +72,10 @@ export default function Navbar() {
             showCartMenu={showCartMenu}
             setShowCartMenu={setShowCartMenu}
           />
-          <Login setShowMenu={setShowMenu} showMenu={showMenu} />
+          <Login />
         </div>
         <div onClick={(e) => e.stopPropagation()}>
-          <UserMenu setShowMenu={setShowMenu} />
+          <UserMenu />
           <CartMenu
             showCartMenu={showCartMenu}
             setShowCartMenu={setShowCartMenu}
