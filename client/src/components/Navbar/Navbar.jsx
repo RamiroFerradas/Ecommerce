@@ -25,7 +25,7 @@ export default function Navbar() {
     <nav className="bg-blue-100 border-gray-200 dark:bg-gray-900">
       <div
         onClick={() => setShowCartMenu(false)}
-        className="w-screen flex flex-wrap items-center mx-auto p-4 justify-between md:justify-around md:order-1"
+        className="flex flex-wrap items-center mx-auto p-4 justify-between md:justify-around md:order-1"
       >
         <NavLink to="/" className="flex items-center">
           <img src={logoSD} className="h-8 mr-3" alt="Flowbite Logo" />

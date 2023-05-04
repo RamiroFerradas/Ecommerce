@@ -114,14 +114,17 @@ export default function Admin() {
           refBrandsAdmin={refBrandsAdmin}
         />
 
-        <div ref={refBrandsAdmin} className="hidden md:block md:w-1/5">
+        <div ref={refBrandsAdmin} className="hidden md:block //md:w-1/5">
           <BrandsAdmin
             setbrandEditSelected={setbrandEditSelected}
             setViewFormBrands={setViewFormBrands}
             viewToast={viewToast}
           />
         </div>
-        <div ref={refProductsAdmin} className="md:block min-h-[60vh] md:w-4/5">
+        <div
+          ref={refProductsAdmin}
+          className="md:block min-h-[60vh] //md:w-4/5"
+        >
           <ProductsAdmin
             setProductEditSelected={setProductEditSelected}
             setViewFormProducts={setViewFormProducts}
