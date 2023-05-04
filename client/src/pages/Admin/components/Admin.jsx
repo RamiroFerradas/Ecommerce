@@ -21,6 +21,8 @@ export default function Admin() {
   const [messageToast, setMessageToast] = useState("");
 
   const { allProducts, loading } = useFetchProducts();
+  const refProductsAdmin = useRef();
+  const refBrandsAdmin = useRef();
 
   const viewToast = (message) => {
     setMessageToast(message);
@@ -40,12 +42,7 @@ export default function Admin() {
     setbrandEditSelected(false);
   };
 
-  const refProductsAdmin = useRef();
-  const refBrandsAdmin = useRef();
-
-  return !isAuthenticated ? (
-    navigate("/")
-  ) : (
+  return (
     <div
       className="container mx-auto md:mx-0 back flex justify-center items-center flex-col"
       onClick={() => {
