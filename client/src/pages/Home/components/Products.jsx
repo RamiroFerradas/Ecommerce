@@ -30,7 +30,7 @@ export default function Products() {
   };
 
   return (
-    <div className="w-full">
+    <div className="">
       {selectedProduct && (
         <ProductDetail
           product={selectedProduct}
