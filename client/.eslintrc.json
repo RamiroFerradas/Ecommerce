@@ -21,6 +21,10 @@
     "no-unused-vars": "warn",
     "no-self-assign": "warn",
     "react/prop-types": "off",
-    "no-useless-escape": "warn"
+    "no-useless-escape": "warn",
+    "react/jsx-key": [
+      "warn",
+      { "checkFragmentShorthand": true, "checkKeyMustBeforeSpread": true }
+    ]
   }
 }

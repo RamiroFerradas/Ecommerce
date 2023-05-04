@@ -1,5 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
-import { addItem, clearCart, removeItem } from "../redux/cartSlice";
+import {
+  addItem,
+  clearCart,
+  removeItem,
+  decrementQuantity,
+} from "../redux/cartSlice";
+import { useState } from "react";
 
 export const useCart = (product) => {
   const dispatch = useDispatch();
@@ -16,11 +22,15 @@ export const useCart = (product) => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+  const decrementQuantityCart = (product) => {
+    console.log(product);
+    dispatch(decrementQuantity(product.id));
+  };
 
   const totalPriceCart = items
     ?.reduce(
       (accumulator, currentValue) =>
-        accumulator + parseFloat(currentValue.price),
+        accumulator + parseFloat(currentValue.price * currentValue.quantity),
       0
     )
     .toFixed(2);
@@ -32,5 +42,6 @@ export const useCart = (product) => {
     handleRemoveFromCart,
     handleClearCart,
     totalPriceCart,
+    decrementQuantityCart,
   };
 };
