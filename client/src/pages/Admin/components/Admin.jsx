@@ -22,8 +22,6 @@ export default function Admin() {
 
   const { allProducts, loading } = useFetchProducts();
 
-  console.log(loading);
-
   const viewToast = (message) => {
     setMessageToast(message);
     setShowToast(true);
@@ -49,7 +47,7 @@ export default function Admin() {
     navigate("/")
   ) : (
     <div
-      className="container mx-auto md:mx-0 px-4 back flex justify-center items-center flex-col"
+      className="container mx-auto md:mx-0 back flex justify-center items-center flex-col"
       onClick={() => {
         closeModalFormProducts();
         closeModalFormBrands();
@@ -88,7 +86,7 @@ export default function Admin() {
         false
       )}
 
-      <div className="flex flex-row justify-around w-10/12 items-center py-2 md:gap- gap-16">
+      <div className="flex flex-row justify-around w-full items-center py-2 px-6 md:gap- gap-16">
         <button
           className="bg-green-500 hover:bg-green-400 text-white font-bold md:py-2 md:px-6 py-1 px-3  text-sm  rounded"
           onClick={(e) => {
@@ -118,24 +116,21 @@ export default function Admin() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="gap-14 p-auto flex justify-center items-center md:items-start md:flex-row flex-col w-full">
+        <div className="gap-14 p-auto flex justify-center items-center md:items-start md:flex-row flex-col">
           <ToggleProductBrand
             refProductsAdmin={refProductsAdmin}
             refBrandsAdmin={refBrandsAdmin}
             loading={loading}
           />
 
-          <div ref={refBrandsAdmin} className="hidden md:block //md:w-1/5">
+          <div ref={refBrandsAdmin} className="hidden md:block">
             <BrandsAdmin
               setbrandEditSelected={setbrandEditSelected}
               setViewFormBrands={setViewFormBrands}
               viewToast={viewToast}
             />
           </div>
-          <div
-            ref={refProductsAdmin}
-            className="md:block min-h-[60vh] //md:w-4/5"
-          >
+          <div ref={refProductsAdmin} className="md:block min-h-[60vh]">
             <ProductsAdmin
               setProductEditSelected={setProductEditSelected}
               setViewFormProducts={setViewFormProducts}
