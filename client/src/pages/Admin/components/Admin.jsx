@@ -84,7 +84,7 @@ export default function Admin() {
 
       <div className="flex flex-row justify-around w-10/12 items-center py-2 md:gap- gap-16">
         <button
-          className="bg-green-500 hover:bg-green-400 text-white font-bold md:py-2 md:px-4 py-1 px-3 text-sm  rounded"
+          className="bg-green-500 hover:bg-green-400 text-white font-bold md:py-2 md:px-4 py-1 px-3  text-sm  rounded"
           onClick={(e) => {
             e.stopPropagation();
             setViewFormProducts(false);
