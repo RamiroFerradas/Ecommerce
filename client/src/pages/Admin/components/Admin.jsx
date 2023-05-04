@@ -7,6 +7,8 @@ import ToggleProductBrand from "./ToggleProductBrand";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Toast from "../../../components/Toast";
+import useFetchProducts from "../../../hooks/useFetchProducts";
+import Spinner from "../../../components/Spinner";
 
 export default function Admin() {
   const navigate = useNavigate();
@@ -17,6 +19,10 @@ export default function Admin() {
   const [viewFormBrands, setViewFormBrands] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [messageToast, setMessageToast] = useState("");
+
+  const { allProducts, loading } = useFetchProducts();
+
+  console.log(loading);
 
   const viewToast = (message) => {
     setMessageToast(message);
@@ -109,30 +115,36 @@ export default function Admin() {
         </button>
       </div>
 
-      <div className="gap-14 p-auto flex justify-center items-center md:items-start md:flex-row flex-col w-full">
-        <ToggleProductBrand
-          refProductsAdmin={refProductsAdmin}
-          refBrandsAdmin={refBrandsAdmin}
-        />
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div className="gap-14 p-auto flex justify-center items-center md:items-start md:flex-row flex-col w-full">
+          <ToggleProductBrand
+            refProductsAdmin={refProductsAdmin}
+            refBrandsAdmin={refBrandsAdmin}
+            loading={loading}
+          />
 
-        <div ref={refBrandsAdmin} className="hidden md:block //md:w-1/5">
-          <BrandsAdmin
-            setbrandEditSelected={setbrandEditSelected}
-            setViewFormBrands={setViewFormBrands}
-            viewToast={viewToast}
-          />
+          <div ref={refBrandsAdmin} className="hidden md:block //md:w-1/5">
+            <BrandsAdmin
+              setbrandEditSelected={setbrandEditSelected}
+              setViewFormBrands={setViewFormBrands}
+              viewToast={viewToast}
+            />
+          </div>
+          <div
+            ref={refProductsAdmin}
+            className="md:block min-h-[60vh] //md:w-4/5"
+          >
+            <ProductsAdmin
+              setProductEditSelected={setProductEditSelected}
+              setViewFormProducts={setViewFormProducts}
+              viewToast={viewToast}
+              allProducts={allProducts}
+            />
+          </div>
         </div>
-        <div
-          ref={refProductsAdmin}
-          className="md:block min-h-[60vh] //md:w-4/5"
-        >
-          <ProductsAdmin
-            setProductEditSelected={setProductEditSelected}
-            setViewFormProducts={setViewFormProducts}
-            viewToast={viewToast}
-          />
-        </div>
-      </div>
+      )}
     </div>
   );
 }

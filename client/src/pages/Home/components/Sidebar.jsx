@@ -28,7 +28,7 @@ export default function Sidebar() {
       </div>
       <div className="px-6 py-2">
         <h2 className="text-lg font-medium mb-4">Marcas</h2>
-        <ul className="space-y-2 overflow-y-auto h-52">
+        <ul className="space-y-2 overflow-y-auto min-h-[4rem] max-h-52">
           <li>
             <label className="inline-flex items-center">
               <input
@@ -41,7 +41,7 @@ export default function Sidebar() {
               <span className="ml-2">Todas</span>
             </label>
           </li>
-          {allBrands?.map(({ name, id }) => (
+          {[]?.map(({ name, id }) => (
             <li key={id}>
               <label className="inline-flex items-center">
                 <input

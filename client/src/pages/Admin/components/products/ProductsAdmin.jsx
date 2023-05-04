@@ -6,8 +6,8 @@ export default function ProductsAdmin({
   setProductEditSelected,
   setViewFormProducts,
   viewToast,
+  allProducts,
 }) {
-  const { allProducts } = useFetchProducts();
   return (
     <div className="bg-gray-100 border border-gray-400 rounded-xl p-2 w-screen md:w-full min-h-[60vh]">
       <p className="hidden md:block text-xl font-bold mb-4 text-center ">
