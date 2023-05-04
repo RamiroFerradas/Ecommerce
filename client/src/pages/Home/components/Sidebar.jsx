@@ -21,7 +21,7 @@ export default function Sidebar() {
   return (
     <div
       id="sidebar_menu"
-      className="hidden md:block md:relative rounded-e-2xl md:rounded-none absolute z-40 bg-blue-100 md:w-full bg-gray-100 md:border-0 border-y-2 border-r-2 border-blue-200/50 transition-all duration-500 left-0 "
+      className="hidden md:block md:relative rounded-e-2xl md:rounded-none absolute z-40 bg-blue-100 md:w-full bg-gray-100 md:border-0 border-y-2 border-r-2 border-blue-200/50 transition-all duration-500 left-0 md:h-screen"
     >
       <div className="border-b-2 border-gray-200 py-4 px-6">
         <h1 className="text-xl font-medium ">Filtrar</h1>

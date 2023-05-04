@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "../pages/Home/components/Home";
 import Admin from "../pages/Admin/components/Admin";
 import Products from "../pages/Home/components/Products";
 function RouterController() {
