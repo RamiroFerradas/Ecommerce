@@ -43,7 +43,7 @@ export default function Admin() {
     navigate("/")
   ) : (
     <div
-      className="container mx-auto md:mx-0 px-4 back flex justify-center items-center flex-col w-screen"
+      className="container mx-auto md:mx-0 px-4 back flex justify-center items-center flex-col"
       onClick={() => {
         closeModalFormProducts();
         closeModalFormBrands();
