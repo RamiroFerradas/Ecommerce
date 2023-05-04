@@ -8,10 +8,7 @@ export default function Products() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 10;
-
-  const handleProductSelect = (product) => {
-    setSelectedProduct(product);
-  };
+  let totalPages = Math.ceil(allProducts.length / productsPerPage);
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -27,6 +24,9 @@ export default function Products() {
       top: 0,
       behavior: "smooth",
     });
+  };
+  const handleProductSelect = (product) => {
+    setSelectedProduct(product);
   };
 
   return (
@@ -90,7 +90,7 @@ export default function Products() {
               setTimeout(() => scrollToTop(), 1);
               setCurrentPage(currentPage + 1);
             }}
-            disabled={currentProducts.length < productsPerPage}
+            disabled={currentPage === totalPages}
           >
             Next
           </button>
