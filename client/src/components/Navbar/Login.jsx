@@ -23,8 +23,8 @@ export default function Login() {
         </button>
       )}
 
-      {isAuthenticated && user ? (
-        <div className="relative inline-block">
+      {isAuthenticated && user && (
+        <div className="relative inline-block w-14 h-14">
           <div className="flex flex-col items-center relatie overflow-hidden ">
             <button onClick={toggleUserMenu}>
               <img
@@ -38,8 +38,6 @@ export default function Login() {
             </div>
           </div>
         </div>
-      ) : (
-        <div className="relative inline-block w-10 h-10"></div>
       )}
     </div>
   );

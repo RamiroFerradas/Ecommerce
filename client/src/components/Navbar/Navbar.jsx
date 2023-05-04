@@ -17,7 +17,6 @@ export default function Navbar() {
     const sidebar = document.getElementById("sidebar_menu");
     if (sidebar) {
       sidebar?.classList?.toggle("hidden");
-      console.log(sidebar);
     }
   };
 
@@ -26,7 +25,7 @@ export default function Navbar() {
     <nav className="bg-blue-100 border-gray-200 dark:bg-gray-900">
       <div
         onClick={() => setShowCartMenu(false)}
-        className="w-sceen flex flex-wrap items-center mx-auto p-4 justify-around md:order-1"
+        className="w-screen flex flex-wrap items-center mx-auto p-4 justify-between md:justify-around md:order-1"
       >
         <NavLink to="/" className="flex items-center">
           <img src={logoSD} className="h-8 mr-3" alt="Flowbite Logo" />
@@ -64,7 +63,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="md:order-3 flex items-center justify-around flex-row  h-12 w-auto gap-1 ">
+        <div className="md:order-3 flex items-center justify-around flex-row  h-12 w-auto gap-1">
           <CartIcon
             showCartMenu={showCartMenu}
             setShowCartMenu={setShowCartMenu}
@@ -78,7 +77,7 @@ export default function Navbar() {
           >
             <FontAwesomeIcon icon={faFilter} className="text-center" />
           </button>
-          <div className="relative md:hidden xs:block w-full ">
+          <div className="relative md:hidden xs:block w-full">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <svg
                 className="w-5 h-5 text-gray-500"
