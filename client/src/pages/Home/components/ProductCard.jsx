@@ -18,9 +18,11 @@ const ProductCard = ({ product, handleProductSelect }) => {
         />
       </div>
       <div className="p-4 overflow-hidden">
-        <p className="font-medium text-gray-900 text-center h-10">
-          {product.name}
-        </p>
+        <div className="h-11 overflow-hidden">
+          <p className="font-medium text-gray-900 text-center ">
+            {product.name}
+          </p>
+        </div>
         {/* <p className="text-gray-600 md:block hidden h-12 overflow-hidden">
           {product.description}
         </p> */}
