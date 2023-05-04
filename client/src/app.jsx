@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./pages/Home/components/Sidebar";
 import { RouterController } from "./routes/RouterController";
@@ -9,6 +10,7 @@ export default function App() {
       userMenu.classList?.add("hidden");
     }
   };
+
   return (
     <div onClick={hideUserMenu} className="">
       <Navbar />

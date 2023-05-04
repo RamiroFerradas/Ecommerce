@@ -8,12 +8,14 @@ const {
   deleteProduct,
   updateProduct,
 } = require("../../Controllers/Products/index.js");
+
 const authMiddleware = require("../../auth.js");
 
 const router = Router();
 
 // ---------- GET PRODUCTS // GET PRODUCTS BY NAME ----------
 const ERROR = "Error @ routes/Products/index.js --> ";
+
 router.get("/", async (req, res) => {
   try {
     const { name } = req.query;
