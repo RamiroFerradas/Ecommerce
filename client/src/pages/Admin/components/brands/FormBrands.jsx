@@ -116,7 +116,7 @@ export default function FormBrands({
         >
           Logo
         </label>
-        <div className="flex flex-row justify-center items-center gap-2 overflow-hidden h-20 md:h-32 w-full">
+        <div className="flex flex-row justify-center items-start gap-2 overflow-hidden h-20 md:h-32 w-full">
           <div className="h-full">
             <ToggleUrlSystemImage
               data={brandData}
@@ -134,7 +134,7 @@ export default function FormBrands({
           {!loadingFile ? (
             <>
               {brandData.logo_url && (
-                <div className="absolute right-1">
+                <div className="top-36 absolute right-1 overflow-hidden">
                   <img
                     src={brandData.logo_url}
                     alt={brandData.name}
@@ -144,7 +144,9 @@ export default function FormBrands({
               )}
             </>
           ) : (
-            <Spinner />
+            <div className="absolute right-5 mt-3 h-10 flex justify-cente items-center overflow-hidden">
+              <Spinner />
+            </div>
           )}
         </div>
 
