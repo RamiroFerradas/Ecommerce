@@ -227,24 +227,7 @@ export default function FormProduct({
                 <p className="text-red-500 text-center">{errors.description}</p>
               )}
             </div>
-            {/* <label
-                htmlFor="image_url"
-                className="block text-gray-800 font-semibold mb-1 text-center"
-              >
-                URL de la imagen
-              </label>
-              <input
-                type="text"
-                name="image_url"
-                id="image_url"
-                placeholder="Ingresa la URL de la imagen"
-                className="w-full border border-gray-400 p-2 rounded placeholder:text-gray-600"
-                value={productData.image_url}
-                onChange={handleInputChange}
-              />
-              {errors.image_url && (
-                <p className="text-red-500 text-center">{errors.image_url}</p>
-              )} */}
+
             <div className="min-h-[21%] flex flex-row justify-center items-center gap-4 relative">
               <div className="">
                 <ToggleUrlSystemImage
@@ -254,9 +237,11 @@ export default function FormProduct({
                   handleInputChange={handleInputChange}
                   setLoadingFile={setLoadingFile}
                 />
-                {/* {errors.image_url && (
-                <p className="text-red-500 text-center">{errors.image_url}</p>
-              )} */}
+                {errors?.image_url && (
+                  <p className="text-red-500 whitespace-nowrap text-center">
+                    {errors?.image_url}
+                  </p>
+                )}
               </div>
               {productData.image_url && !loadingFile && (
                 <img

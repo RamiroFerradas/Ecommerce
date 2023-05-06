@@ -9,7 +9,9 @@ export default function ToggleUrlSystemImage({
 }) {
   const [fileUrlSistem, setFileUrlSistem] = useState(true);
 
-  const valueName = data.hasOwnProperty("image_url") ? `image_url` : `logo_url`;
+  const valueName = Object.prototype.hasOwnProperty.call(data, "image_url")
+    ? `image_url`
+    : `logo_url`;
 
   const uploadImage = async (e) => {
     try {
