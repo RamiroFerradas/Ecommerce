@@ -74,9 +74,12 @@ export default function FormBrands({
       className="rounded-3xl fixed md:inset-0 inset-1 bg-white/90 backdrop-blur-xs h-[70vh] md:w-[30vw] overflow-x-hidden overflow-y-auto m-auto"
       onClick={(e) => e.stopPropagation()}
     >
-      <div className="float-right text-red-500">
-        <button onClick={closeModalFormBrands} className="p-2">
-          <FontAwesomeIcon icon={faRectangleXmark} />
+      <div className="relative float-right p-2 text-red-500 z-50">
+        <button className="">
+          <FontAwesomeIcon
+            icon={faRectangleXmark}
+            onClick={closeModalFormBrands}
+          />
         </button>
       </div>
 
