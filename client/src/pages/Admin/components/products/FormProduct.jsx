@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
 import CreatableSelect from "react-select/creatable";
 import useFetchBrands from "../../../../hooks/useFetchBrands";
+import ToggleProductBrand from "../ToggleProductBrand";
+import ToggleUrlSystemImage from "../ToggleUrlSystemImage";
 
 export default function FormProduct({
   productEditSelected,
@@ -35,6 +37,7 @@ export default function FormProduct({
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
     if (name !== "logo_url") {
       if (value !== "")
         setErrors({
@@ -114,9 +117,9 @@ export default function FormProduct({
     if (!productData.description) {
       errors.description = required;
     }
-    if (!productData.image_url) {
-      errors.image_url = required;
-    }
+    // if (!productData.image_url) {
+    //   errors.image_url = required;
+    // }
     if (!productData.price) {
       errors.price = required;
     }
@@ -130,10 +133,14 @@ export default function FormProduct({
     if (!regexUrl.test(productData.brand.logo_url)) {
       errors.brandUrl = "Url inválida";
     }
+    if (!regexUrl.test(productData.image_url)) {
+      errors.image_url = "Url inválida";
+    }
     if (!productData.brand.logo_url != "") {
       errors.brandUrl = "";
     }
-
+    console.log(productData);
+    console.log(errors);
     setErrors(errors);
     if (Object.keys(errors).length === 0) {
       if (!productEditSelected) {
@@ -157,6 +164,8 @@ export default function FormProduct({
   const selectedBrandOption = optionsBrands.find(
     (option) => option.label === productData.brand.name
   );
+
+  const [loadingFile, setLoadingFile] = useState(false);
 
   return (
     <div className="rounded-3xl fixed md:inset-0 inset-1 bg-white/90 backdrop-blur-xs h-[96vh] md:w-[50vw] overflow-x-hidden overflow-y-auto m-auto ">
@@ -189,7 +198,7 @@ export default function FormProduct({
                 name="name"
                 id="name"
                 placeholder="Ingresa el nombre del producto"
-                className="w-full border border-gray-400 p-2 rounded placeholder:text-gray-600"
+                className="w-full border border-gray-400 p-2 rounded placeholder:text-gray-600 text-center"
                 value={productData.name}
                 onChange={handleInputChange}
               />
@@ -210,7 +219,7 @@ export default function FormProduct({
                 id="description"
                 rows="3"
                 placeholder="Ingresa la descripción del producto"
-                className="w-full border border-gray-400 p-2 rounded placeholder:text-gray-600"
+                className="w-full border border-gray-400 p-2 rounded placeholder:text-gray-600 text-center"
                 value={productData.description}
                 onChange={handleInputChange}
               />
@@ -218,8 +227,7 @@ export default function FormProduct({
                 <p className="text-red-500 text-center">{errors.description}</p>
               )}
             </div>
-            <div className="min-h-[21%]">
-              <label
+            {/* <label
                 htmlFor="image_url"
                 className="block text-gray-800 font-semibold mb-1 text-center"
               >
@@ -236,6 +244,26 @@ export default function FormProduct({
               />
               {errors.image_url && (
                 <p className="text-red-500 text-center">{errors.image_url}</p>
+              )} */}
+            <div className="min-h-[21%] flex flex-row justify-center items-center gap-4 relative">
+              <div className="">
+                <ToggleUrlSystemImage
+                  data={productData}
+                  setData={setProductData}
+                  error={errors}
+                  handleInputChange={handleInputChange}
+                  setLoadingFile={setLoadingFile}
+                />
+                {/* {errors.image_url && (
+                <p className="text-red-500 text-center">{errors.image_url}</p>
+              )} */}
+              </div>
+              {productData.image_url && !loadingFile && (
+                <img
+                  src={productData.image_url}
+                  alt={productData.name}
+                  className="h-10 w-10 md:w-16 md:h-16 rounded-full object-cover"
+                />
               )}
             </div>
             <div className="min-h-[21%]">
@@ -250,7 +278,7 @@ export default function FormProduct({
                 name="price"
                 id="price"
                 placeholder="Ingresa el precio del producto"
-                className="w-full border border-gray-400 p-2 rounded placeholder:text-gray-600"
+                className="w-full border border-gray-400 p-2 rounded placeholder:text-gray-600 text-center"
                 value={productData.price}
                 onChange={handleInputChange}
               />
@@ -300,7 +328,7 @@ export default function FormProduct({
                 name="logo_url"
                 id="logo_url"
                 placeholder="Ingresa la URL del logo de la marca"
-                className="w-full border border-gray-400 p-2 rounded placeholder:text-gray-600"
+                className="w-full border border-gray-400 p-2 rounded placeholder:text-gray-600 text-center"
                 value={productData.brand.logo_url}
                 onChange={handleInputChange}
               />

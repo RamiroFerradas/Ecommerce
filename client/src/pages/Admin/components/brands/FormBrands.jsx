@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { addBrand, updateBrand } from "../../../../redux/brandsSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
+import ToggleUrlSystemImage from "../ToggleUrlSystemImage";
 
 export default function FormBrands({
   brandEditSelected,
@@ -52,7 +53,7 @@ export default function FormBrands({
     }
 
     setError(errors);
-
+    console.log(brandData);
     if (Object.keys(errors).length === 0) {
       if (!brandEditSelected) {
         dispatch(addBrand(brandData));
@@ -65,9 +66,11 @@ export default function FormBrands({
     }
   };
 
+  const [loadingFile, setLoadingFile] = useState(false);
+
   return (
     <div
-      className="rounded-3xl fixed md:inset-0 inset-1 bg-white/90 backdrop-blur-xs h-[50vh] md:w-[30vw] overflow-x-hidden overflow-y-auto m-auto"
+      className="rounded-3xl fixed md:inset-0 inset-1 bg-white/90 backdrop-blur-xs h-[70vh] md:w-[30vw] overflow-x-hidden overflow-y-auto m-auto"
       onClick={(e) => e.stopPropagation()}
     >
       <div className="float-right text-red-500">
@@ -80,7 +83,7 @@ export default function FormBrands({
         onSubmit={(e) => handleSubmit(e)}
         className="space-y-6 justify-center items-center flex  fixed inset-0 outline-none focus:outline-none flex-col mt-5"
       >
-        <div className="h-24 w-full flex justify-start flex-col items-center">
+        <div className="w-full flex justify-start flex-col items-center">
           <label
             htmlFor="name"
             className="block text-gray-800 placeholder:text-gray-600 font-semibold mb-1 text-center"
@@ -102,28 +105,37 @@ export default function FormBrands({
             <p className="text-red-500 whitespace-nowrap">{error.name}</p>
           )}
         </div>
-        <div className="h-24 ">
-          <label
-            htmlFor="logo_url"
-            className="block text-gray-800 placeholder:text-gray-600 font-semibold mb-1 text-center"
-          >
-            URL del logo de la marca
-          </label>
-          <input
-            type="text"
-            name="logo_url"
-            id="logo_url"
-            placeholder="Ingresa la URL del logo de la marca"
-            className="w-full border border-gray-400 p-2 rounded"
-            value={brandData.logo_url}
-            onChange={handleInputChange}
-          />
-          {error.logo_url && (
-            <p className="text-red-500 whitespace-nowrap text-center">
-              {error.logo_url}
-            </p>
+
+        <label
+          htmlFor="name"
+          className="block text-gray-800 placeholder:text-gray-600 font-semibold mb-1 text-center"
+        >
+          Logo
+        </label>
+        <div className="flex flex-row justify-center items-center gap-2">
+          <div>
+            <ToggleUrlSystemImage
+              data={brandData}
+              setData={setBrandData}
+              handleInputChangue={handleInputChange}
+              error={error}
+              setLoadingFile={setLoadingFile}
+            />
+            {error?.logo_url && (
+              <p className="text-red-500 whitespace-nowrap text-center">
+                {error?.logo_url}
+              </p>
+            )}
+          </div>
+          {brandData.logo_url && !loadingFile && (
+            <img
+              src={brandData.logo_url}
+              alt={brandData.name}
+              className="h-10 w-10 md:w-16 md:h-16 rounded-full"
+            />
           )}
         </div>
+
         <div className="flex justify-end space-x-2">
           <button
             type="button"
