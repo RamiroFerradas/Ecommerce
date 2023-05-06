@@ -83,7 +83,7 @@ export default function ToggleUrlSystemImage({
           name={valueName}
           id={valueName}
           placeholder="Ingresa la URL del logo de la marca"
-          className="w-full border border-gray-400 p-2 rounded"
+          className="w-full  border border-gray-400 p-2 rounded"
           defaultValue={data[valueName]}
           onChange={handleInputChange}
         />

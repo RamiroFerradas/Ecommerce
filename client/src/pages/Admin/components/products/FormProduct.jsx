@@ -227,8 +227,8 @@ export default function FormProduct({
               )}
             </div>
 
-            <div className="h-20 flex flex-row justify-center items-center gap-4 relative overflow-hidden">
-              <div className="">
+            <div className="h-20 flex flex-row justify-center items-center gap-4 relative overflow-hidden ">
+              <div className="w-full">
                 <ToggleUrlSystemImage
                   data={productData}
                   setData={setProductData}
