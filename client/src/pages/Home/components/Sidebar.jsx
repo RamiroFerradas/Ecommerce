@@ -27,7 +27,7 @@ export default function Sidebar() {
         <h1 className="text-xl font-medium ">Filtrar</h1>
       </div>
       <div className="px-6 py-2">
-        <h2 className="text-lg font-medium mb-4">Marcas</h2>
+        <h2 className="text-lg font-bold mb-4">Marcas</h2>
         <ul className="space-y-2 overflow-y-auto min-h-[4rem] max-h-52">
           <li>
             <label className="inline-flex items-center">
@@ -61,55 +61,63 @@ export default function Sidebar() {
         <h1 className="text-xl font-medium mb-">Ordenar</h1>
       </div>
       <div className="px-6 py-2">
-        <h2 className="text-md font-medium mb-4">Alfabeticamente</h2>
+        <h2 className="text-md font-bold mb-4">Alfabeticamente</h2>
         <div className="space-y-2 flex flex-col">
-          <label className="inline-flex items-center">
-            <input
-              type="checkbox"
-              className="form-checkbox"
-              value="a-z"
-              name="alphabetically"
-              checked={orderType.alphabetically === "a-z"}
-              onChange={handleCheckboxChange}
-            />
-            <span className="ml-2">A-Z</span>
-
-            <input
-              type="checkbox"
-              className="form-checkbox"
-              value="z-a"
-              name="alphabetically"
-              checked={orderType.alphabetically === "z-a"}
-              onChange={handleCheckboxChange}
-            />
-            <span className="ml-2">Z-A</span>
-          </label>
+          <div className="inline-flex items-center">
+            <div className="inline-flex items-center gap-2">
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  className="form-checkbox"
+                  value="a-z"
+                  name="alphabetically"
+                  checked={orderType.alphabetically === "a-z"}
+                  onChange={handleCheckboxChange}
+                />
+                <span className="ml-2">A-Z</span>
+              </label>
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  className="form-checkbox"
+                  value="z-a"
+                  name="alphabetically"
+                  checked={orderType.alphabetically === "z-a"}
+                  onChange={handleCheckboxChange}
+                />
+                <span className="ml-2">Z-A</span>
+              </label>
+            </div>
+          </div>
         </div>
       </div>
       <div className="px-6 py-2">
-        <h2 className="text-md font-medium mb-4">Precio</h2>
+        <h2 className="text-md font-bold mb-4">Precio</h2>
         <div className="space-y-2 flex flex-col">
-          <label className="inline-flex items-center">
-            <input
-              type="checkbox"
-              className="form-checkbox"
-              value="high"
-              name="price"
-              checked={orderType.price === "high"}
-              onChange={handleCheckboxChange}
-            />
-            <span className="ml-2">Mayor</span>
-
-            <input
-              type="checkbox"
-              className="form-checkbox"
-              value="low"
-              name="price"
-              checked={orderType.price === "low"}
-              onChange={handleCheckboxChange}
-            />
-            <span className="ml-2">Menor</span>
-          </label>
+          <div className="inline-flex items-center gap-2">
+            <label htmlFor="">
+              <input
+                type="checkbox"
+                className="form-checkbox"
+                value="high"
+                name="price"
+                checked={orderType.price === "high"}
+                onChange={handleCheckboxChange}
+              />
+              <span className="ml-2">Mayor</span>
+            </label>
+            <label htmlFor="">
+              <input
+                type="checkbox"
+                className="form-checkbox"
+                value="low"
+                name="price"
+                checked={orderType.price === "low"}
+                onChange={handleCheckboxChange}
+              />
+              <span className="ml-2">Menor</span>
+            </label>
+          </div>
         </div>
       </div>
     </div>
