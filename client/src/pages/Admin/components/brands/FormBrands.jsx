@@ -4,6 +4,7 @@ import { addBrand, updateBrand } from "../../../../redux/brandsSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
 import ToggleUrlSystemImage from "../ToggleUrlSystemImage";
+import Spinner from "../../../../components/Spinner";
 
 export default function FormBrands({
   brandEditSelected,
@@ -53,7 +54,7 @@ export default function FormBrands({
     }
 
     setError(errors);
-    console.log(brandData);
+
     if (Object.keys(errors).length === 0) {
       if (!brandEditSelected) {
         dispatch(addBrand(brandData));
@@ -127,28 +128,34 @@ export default function FormBrands({
               </p>
             )}
           </div>
-          {brandData.logo_url && !loadingFile && (
-            <img
-              src={brandData.logo_url}
-              alt={brandData.name}
-              className="h-10 w-10 md:w-16 md:h-16 rounded-full"
-            />
+          {brandData.logo_url && (
+            <>
+              {!loadingFile ? (
+                <img
+                  src={brandData.logo_url}
+                  alt={brandData.name}
+                  className="h-10 w-10 md:w-16 md:h-16 rounded-full object-contain"
+                />
+              ) : (
+                <Spinner />
+              )}
+            </>
           )}
         </div>
 
         <div className="flex justify-end space-x-2">
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            {brandEditSelected ? ` Guardar cambios` : `Cargar`}
+          </button>
           <button
             type="button"
             className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
             onClick={closeModalFormBrands}
           >
             Cancelar
-          </button>
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            {brandEditSelected ? ` Guardar cambios` : `Cargar`}
           </button>
         </div>
       </form>

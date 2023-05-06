@@ -4,15 +4,11 @@ import BrandsAdmin from "./brands/BrandsAdmin";
 import ProductsAdmin from "./products/ProductsAdmin";
 import FormBrands from "./brands/FormBrands";
 import ToggleProductBrand from "./ToggleProductBrand";
-import { useNavigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
 import Toast from "../../../components/Toast";
 import useFetchProducts from "../../../hooks/useFetchProducts";
 import Spinner from "../../../components/Spinner";
 
 export default function Admin() {
-  const navigate = useNavigate();
-  const { isAuthenticated } = useAuth0();
   const [productEditSelected, setProductEditSelected] = useState(false);
   const [brandEditSelected, setbrandEditSelected] = useState(false);
   const [viewFormProducts, setViewFormProducts] = useState(false);
@@ -110,8 +106,10 @@ export default function Admin() {
         </button>
       </div>
 
-      {loading ? (
-        <Spinner />
+      {loading || !allProducts.length ? (
+        <div className="">
+          <Spinner />
+        </div>
       ) : (
         <div className="gap-14 p-auto flex justify-center items-center md:items-start md:flex-row flex-col">
           <ToggleProductBrand

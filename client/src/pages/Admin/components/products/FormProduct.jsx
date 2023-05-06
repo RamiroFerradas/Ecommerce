@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
 import CreatableSelect from "react-select/creatable";
 import useFetchBrands from "../../../../hooks/useFetchBrands";
-import ToggleProductBrand from "../ToggleProductBrand";
 import ToggleUrlSystemImage from "../ToggleUrlSystemImage";
+import Spinner from "../../../../components/Spinner";
 
 export default function FormProduct({
   productEditSelected,
@@ -139,8 +139,7 @@ export default function FormProduct({
     if (!productData.brand.logo_url != "") {
       errors.brandUrl = "";
     }
-    console.log(productData);
-    console.log(errors);
+
     setErrors(errors);
     if (Object.keys(errors).length === 0) {
       if (!productEditSelected) {
@@ -228,7 +227,7 @@ export default function FormProduct({
               )}
             </div>
 
-            <div className="min-h-[21%] flex flex-row justify-center items-center gap-4 relative">
+            <div className="min-h-[21%] flex flex-row justify-center items-center gap-4 relative overflow-hidden">
               <div className="">
                 <ToggleUrlSystemImage
                   data={productData}
@@ -243,12 +242,21 @@ export default function FormProduct({
                   </p>
                 )}
               </div>
-              {productData.image_url && !loadingFile && (
-                <img
-                  src={productData.image_url}
-                  alt={productData.name}
-                  className="h-10 w-10 md:w-16 md:h-16 rounded-full object-cover"
-                />
+
+              {productData.image_url && (
+                <>
+                  {!loadingFile ? (
+                    <img
+                      src={productData.image_url}
+                      alt={productData.name}
+                      className="h-10 w-10 md:w-16 md:h-16 rounded-full object-cover"
+                    />
+                  ) : (
+                    <div className="h-30 overflow-hidden">
+                      <Spinner />
+                    </div>
+                  )}
+                </>
               )}
             </div>
             <div className="min-h-[21%]">
@@ -326,17 +334,17 @@ export default function FormProduct({
 
         <div className="flex justify-center space-x-2  w-full h- items-center h-12">
           <button
+            type="submit"
+            className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-28 rounded"
+          >
+            {productEditSelected ? ` Guardar` : `Cargar`}
+          </button>
+          <button
             type="button"
             className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded w-28"
             onClick={closeModalFormProducts}
           >
             Cancelar
-          </button>
-          <button
-            type="submit"
-            className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-28 rounded"
-          >
-            {productEditSelected ? ` Guardar` : `Cargar`}
           </button>
         </div>
       </form>

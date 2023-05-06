@@ -32,7 +32,6 @@ export default function ToggleUrlSystemImage({
         ...prevData,
         [valueName]: file.secure_url,
       }));
-      console.log(file.secure_url);
     } catch (error) {
       console.error(`Error subir imagen ==> ${error}`);
     } finally {

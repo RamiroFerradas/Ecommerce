@@ -23,7 +23,6 @@ export const useCart = (product) => {
     dispatch(clearCart());
   };
   const decrementQuantityCart = (product) => {
-    console.log(product);
     dispatch(decrementQuantity(product.id));
   };
 
