@@ -170,7 +170,7 @@ export default function FormProduct({
     <div className="rounded-3xl fixed md:inset-0 inset-1 bg-white/90 backdrop-blur-xs h-[96vh] md:w-[50vw] overflow-x-hidden overflow-y-auto m-auto ">
       <button
         onClick={closeModalFormProducts}
-        className="float-right p-2 text-red-500"
+        className="float-right p-2 text-red-500 z-50"
       >
         <FontAwesomeIcon icon={faRectangleXmark} />
       </button>
@@ -249,7 +249,7 @@ export default function FormProduct({
                     <img
                       src={productData.image_url}
                       alt={productData.name}
-                      className="h-10 w-10 md:w-16 md:h-16 rounded-full object-cover"
+                      className="h-10 w-10 md:w-16 md:h-16 rounded-full object-contain"
                     />
                   )}
                 </>
