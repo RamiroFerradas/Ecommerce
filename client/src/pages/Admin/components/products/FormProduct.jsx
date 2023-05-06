@@ -229,7 +229,7 @@ export default function FormProduct({
               )}
             </div>
 
-            <div className="h-20 flex flex-row justify-center items-center gap-4 relative overflow-hidden ">
+            <div className="h-32 flex flex-row justify-center items-center gap-4 relative overflow-hidden w-80">
               <div className="w-full">
                 <ToggleUrlSystemImage
                   data={productData}
@@ -248,11 +248,13 @@ export default function FormProduct({
               {!loadingFile ? (
                 <>
                   {productData.image_url && (
-                    <img
-                      src={productData.image_url}
-                      alt={productData.name}
-                      className="h-10 w-10 md:w-16 md:h-16 rounded-full object-contain"
-                    />
+                    <div className="absolute right-0">
+                      <img
+                        src={productData.image_url}
+                        alt={productData.name}
+                        className="h-10 w-10 md:w-16 md:h-16 rounded-full object-contain"
+                      />
+                    </div>
                   )}
                 </>
               ) : (

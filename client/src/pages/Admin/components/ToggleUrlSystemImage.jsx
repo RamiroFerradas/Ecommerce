@@ -4,7 +4,6 @@ export default function ToggleUrlSystemImage({
   setData,
   data,
   handleInputChange,
-  error,
   setLoadingFile,
 }) {
   const [fileUrlSistem, setFileUrlSistem] = useState(true);

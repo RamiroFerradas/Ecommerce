@@ -21,12 +21,12 @@ export default function FormBrands({
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-
     if (value !== "")
       setError({
         ...error,
         [name]: "",
       });
+
     setBrandData({
       ...brandData,
       [name]:
@@ -71,7 +71,7 @@ export default function FormBrands({
 
   return (
     <div
-      className="rounded-3xl fixed md:inset-0 inset-1 bg-white/90 backdrop-blur-xs h-[70vh] md:w-[30vw] overflow-x-hidden overflow-y-auto m-auto"
+      className="rounded-3xl fixed md:inset-0 inset-1 bg-white/90 backdrop-blur-xs h-[60%] md:w-[32vw] overflow-x-hidden overflow-y-auto m-auto"
       onClick={(e) => e.stopPropagation()}
     >
       <div className="relative float-right p-2 text-red-500 z-50">
@@ -99,7 +99,7 @@ export default function FormBrands({
             name="name"
             id="name"
             placeholder="Ingresa el nombre de la marca"
-            className={`h-10 w-ful  border border-gray-400 p-2 rounded ${
+            className={`h-10 border border-gray-400 p-2 rounded ${
               error.name ? "pb-0 mb-0 rounded-b-none" : ""
             }`}
             value={brandData.name}
@@ -116,12 +116,12 @@ export default function FormBrands({
         >
           Logo
         </label>
-        <div className="flex flex-row justify-center items-center gap-2 overflow-hidden h-20">
-          <div>
+        <div className="flex flex-row justify-center items-center gap-2 overflow-hidden h-20 md:h-32 w-full">
+          <div className="h-full">
             <ToggleUrlSystemImage
               data={brandData}
               setData={setBrandData}
-              handleInputChangue={handleInputChange}
+              handleInputChange={handleInputChange}
               error={error}
               setLoadingFile={setLoadingFile}
             />
@@ -134,11 +134,13 @@ export default function FormBrands({
           {!loadingFile ? (
             <>
               {brandData.logo_url && (
-                <img
-                  src={brandData.logo_url}
-                  alt={brandData.name}
-                  className="h-10 w-10 md:w-16 md:h-16 rounded-full object-contain"
-                />
+                <div className="absolute right-1">
+                  <img
+                    src={brandData.logo_url}
+                    alt={brandData.name}
+                    className="h-10 w-10 md:w-16 md:h-16 rounded-full object-contain float-right"
+                  />
+                </div>
               )}
             </>
           ) : (
@@ -146,7 +148,7 @@ export default function FormBrands({
           )}
         </div>
 
-        <div className="flex justify-end space-x-2">
+        <div className="flex justify-end space-x-2 p-2">
           <button
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
