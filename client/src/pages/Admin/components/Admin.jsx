@@ -107,9 +107,7 @@ export default function Admin() {
       </div>
 
       {loading || !allProducts.length ? (
-        <div className="">
-          <Spinner />
-        </div>
+        <Spinner />
       ) : (
         <div className="gap-14 p-auto flex justify-center items-center md:items-start md:flex-row flex-col">
           <ToggleProductBrand

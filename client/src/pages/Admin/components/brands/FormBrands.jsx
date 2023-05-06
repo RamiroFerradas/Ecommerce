@@ -113,7 +113,7 @@ export default function FormBrands({
         >
           Logo
         </label>
-        <div className="flex flex-row justify-center items-center gap-2">
+        <div className="flex flex-row justify-center items-center gap-2 overflow-hidden h-20">
           <div>
             <ToggleUrlSystemImage
               data={brandData}
