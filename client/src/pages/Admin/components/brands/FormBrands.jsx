@@ -128,18 +128,18 @@ export default function FormBrands({
               </p>
             )}
           </div>
-          {brandData.logo_url && (
+          {!loadingFile ? (
             <>
-              {!loadingFile ? (
+              {brandData.logo_url && (
                 <img
                   src={brandData.logo_url}
                   alt={brandData.name}
                   className="h-10 w-10 md:w-16 md:h-16 rounded-full object-contain"
                 />
-              ) : (
-                <Spinner />
               )}
             </>
+          ) : (
+            <Spinner />
           )}
         </div>
 

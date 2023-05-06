@@ -243,20 +243,18 @@ export default function FormProduct({
                 )}
               </div>
 
-              {productData.image_url && (
+              {!loadingFile ? (
                 <>
-                  {!loadingFile ? (
+                  {productData.image_url && (
                     <img
                       src={productData.image_url}
                       alt={productData.name}
                       className="h-10 w-10 md:w-16 md:h-16 rounded-full object-cover"
                     />
-                  ) : (
-                    <div className="h-30 overflow-hidden">
-                      <Spinner />
-                    </div>
                   )}
                 </>
+              ) : (
+                <Spinner />
               )}
             </div>
             <div className="min-h-[21%]">
