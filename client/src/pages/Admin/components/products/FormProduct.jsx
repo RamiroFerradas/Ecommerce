@@ -133,9 +133,9 @@ export default function FormProduct({
     if (!regexUrl.test(productData.brand.logo_url)) {
       errors.brandUrl = "Url inválida";
     }
-    if (!regexUrl.test(productData.image_url)) {
-      errors.image_url = "Url inválida";
-    }
+    // if (!regexUrl.test(productData.image_url)) {
+    //   errors.image_url = "Url inválida";
+    // }
     if (!productData.brand.logo_url != "") {
       errors.brandUrl = "";
     }
