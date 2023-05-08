@@ -55,7 +55,7 @@ export default function ProductDetail({ product, setSelectedProduct }) {
               </div>
             </div>
 
-            <div className="flex items-center gap-10 p-1 border-t border-solid border-slate-200 ">
+            <div className="flex items-center justify-center p=4 gap-10 p-3 border-t border-solid border-slate-200 w-[80%] ">
               <p className="text-3xl font-extralight">${product.price}</p>
               <button
                 onClick={(e) => {
