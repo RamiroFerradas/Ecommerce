@@ -48,14 +48,14 @@ export default function ProductDetail({ product, setSelectedProduct }) {
                 <div className="overflow-y-auto h-64">
                   <p className="text-xl font-semibold mb-1">Descripción</p>
 
-                  <p className="text-slate-500 md:text-lg leading-relaxed">
+                  <p className="text-plate-500 md:text-lg text-xs leading-relaxed">
                     {product.description}
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center justify-center p=4 gap-10 p-3 border-t border-solid border-slate-200 w-[80%] ">
+            <div className="flex items-center justify-center p=4 gap-10 p-3 border-t border-solid border-gray-200 w-[80%] ">
               <p className="text-3xl font-extralight">${product.price}</p>
               <button
                 onClick={(e) => {
