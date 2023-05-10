@@ -1,10 +1,6 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import Navbar from "./components/Navbar/Navbar";
-import Sidebar from "./pages/Home/components/Sidebar";
+import Sidebar from "./components/Sidebar";
 import { RouterController } from "./routes/RouterController";
-import auth0 from "auth0-js";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
 export default function App() {
   const hideUserMenu = () => {

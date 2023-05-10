@@ -1,8 +1,8 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAuthUsers from "../../hooks/useAuthUsers";
 
 export default function UserMenu() {
-  const { logout } = useAuth0();
+  const { logout } = useAuthUsers();
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -23,6 +23,16 @@ export default function UserMenu() {
       >
         {buttonText}
       </button>
+      {/* <button
+        className="block px-4 py-2 text-gray-800 hover:bg-blue-600/75 hover:text-white w-full transition duration-10 ease-in-out"
+        onClick={() => {
+          const userMenu = document.getElementById("userMenu");
+          navigate("/users");
+          userMenu.classList?.add("hidden");
+        }}
+      >
+        Usuarios
+      </button> */}
       <button
         className="block px-4 py-2 text-gray-800 hover:bg-blue-600/75 hover:text-white w-full border-t border-gray-500 transition duration-10 ease-in-out"
         onClick={() => logout()}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useCart } from "../../hooks/useCart";
 import { BsDash, BsFillCartXFill, BsPlus } from "react-icons/bs";
-import { useAuth0 } from "@auth0/auth0-react";
+import useAuthUsers from "../../hooks/useAuthUsers";
 
 export default function CartMenu({ setShowCartMenu, showCartMenu }) {
   const {
@@ -14,7 +14,7 @@ export default function CartMenu({ setShowCartMenu, showCartMenu }) {
     decrementQuantityCart,
   } = useCart();
 
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  const { isAuthenticated, loginWithRedirect } = useAuthUsers();
 
   const handlePay = () => {
     !isAuthenticated

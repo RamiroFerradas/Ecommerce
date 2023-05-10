@@ -1,10 +1,10 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import UserMenu from "../Navbar/UserMenu.jsx";
+import useAuthUsers from "../../hooks/useAuthUsers";
 
 export default function Login() {
-  const { isLoading, isAuthenticated, loginWithRedirect, user } = useAuth0();
+  const { isLoading, isAuthenticated, loginWithRedirect, userDb, allUsers } =
+    useAuthUsers();
 
   const toggleUserMenu = (event) => {
     event.stopPropagation();
@@ -23,13 +23,13 @@ export default function Login() {
         </button>
       )}
 
-      {isAuthenticated && user && (
+      {isAuthenticated && userDb && (
         <div className="relative inline-block w-14 h-14">
           <div className="flex flex-col items-center relatie overflow-hidden ">
             <button onClick={toggleUserMenu}>
               <img
-                src={user?.picture}
-                alt={user?.name}
+                src={userDb?.picture}
+                alt={userDb?.name}
                 className="w-12 h-12 rounded-full object-cover"
               />
             </button>

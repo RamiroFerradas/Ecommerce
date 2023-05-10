@@ -1,7 +1,7 @@
 const { Product, Brand } = require("../../db");
 const { Op } = require("sequelize");
 
-const ERROR = "Error @ Controllers/index/Products.js";
+const ERROR = "Error @ Controllers/Products/index.js";
 
 // GET (ALL) PRODUCTS
 const getProducts = async () => {

@@ -6,6 +6,7 @@ import storage from "redux-persist/lib/storage";
 import productsReducer from "./productsSlice.js";
 import brandsReducer from "./brandsSlice.js";
 import cartReducer from "./cartSlice.js";
+import usersReducer from "./usersSlice.js";
 
 const persistConfig = {
   key: "items",
@@ -19,6 +20,7 @@ export const store = configureStore({
     products: productsReducer,
     brands: brandsReducer,
     cart: persistedCartReducer,
+    users: usersReducer,
   },
 });
 
