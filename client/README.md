@@ -91,11 +91,12 @@ Si completaste el extra 2. en el backend, podés mostrar también información d
 
 <p align="left"><img height="200" src="./src/assets/images/Screenshots/product_detail.jpg" alt="usermenu" /><p>
 
-<span id="admin"></span>
+<span id="adminProduct"></span>
 
-### Panel de administracion:
+### Panel de administracion / Productos - marcas:
 
 - La misma Navbar en la parte superior.
+- El mismo sidebar para interactuar con los productos.
 - Al ingresar podemos ver dos botones para crear nueva marca o producto lso cuales nos despliega un formulario para cada uno.
 - A la izqueirda podemos ver todas las marcas cargadas con la posibilidad de editarlas/eliminarlas.
 - a la derecha la grilla de productos cargados con la posibilidad de editarlos/ eliminarlos.
@@ -107,3 +108,17 @@ Si completaste el extra 2. en el backend, podés mostrar también información d
 
 - Al cargar/editar un producto se nos abre el siguiente formulario, al editar aparecen los datos precargados con algunas validaciones de nombre/url, En el apartado de marcas nos aparece un selector para elegir una marca ya cargada o podemos tipear el nombre de una nueva.
 <p align="left"><img height="200" src="./src/assets/images/Screenshots/form_products.jpg" alt="form_products" /><p>
+
+<span id="adminUser"></span>
+
+### Panel de administracion / Usuarios:
+
+- La misma Navbar en la parte superior.
+- El mismo sidebar para interactuar con los usuarios.
+- Al ingresar podemos ver el listad ode usuarios que se han logueado en nuestro sitio con la posibilidad de modificarlos/borrarlos
+
+<p align="left"><img height="200" src="./src/assets/images/Screenshots/users.jpg" alt="users_panel" /><p>
+
+- Al editar un usuario se nos abre el siguiente formulariocon los datos precargados para poder modificarlos, o cambiarle el rol en la pagina.
+
+<p align="left"><img height="200" src="./src/assets/images/Screenshots/editUser.jpg" alt="form_brand" /><p>
