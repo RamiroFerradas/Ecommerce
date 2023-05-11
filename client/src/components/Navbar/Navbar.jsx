@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import CartMenu from "./CartMenu";
 import UserMenu from "./UserMenu";
+import useAuthUsers from "../../hooks/useAuthUsers";
 
 export default function Navbar() {
   const [showCartMenu, setShowCartMenu] = useState(false);
@@ -18,6 +19,8 @@ export default function Navbar() {
       sidebar?.classList?.toggle("hidden");
     }
   };
+
+  const { loading, userDb } = useAuthUsers();
 
   const { handleInputChangue, input } = useSearch();
   return (
@@ -67,7 +70,11 @@ export default function Navbar() {
             />
           </div>
         </div>
-        <div className="md:order-3 flex items-center justify-around flex-row  h-12 w-auto gap-1 order-2">
+        <div
+          className={`md:order-3 flex items-center justify-around flex-row  h-12 w-auto gap-1 order-2 ${
+            loading || !userDb ? `opacity-0 pointer-events-none` : ""
+          }`}
+        >
           <CartIcon
             showCartMenu={showCartMenu}
             setShowCartMenu={setShowCartMenu}

@@ -5,7 +5,7 @@ const initialState = {
   allUsers: [],
   auxUsers: [],
   userDb: {},
-  loading: false,
+  loading: true,
 };
 
 export const usersSlice = createSlice({
@@ -17,8 +17,8 @@ export const usersSlice = createSlice({
       state.auxUsers = action.payload;
       state.loading = false;
     },
-    setLoading: (state) => {
-      state.loading = true;
+    setLoading: (state, action) => {
+      state.loading = action.payload;
     },
     setUser: (state, action) => {
       state.userDb = action.payload;
@@ -80,15 +80,14 @@ const headers = {
 
 export const getAllUsers = () => async (dispatch) => {
   try {
-    dispatch(setLoading()); // Inicio de carga
+    dispatch(setLoading(true));
     const res = await axios(url);
-    dispatch(setAllUsers(res.data)); // Solicitud exitosa
+    dispatch(setAllUsers(res.data));
   } catch (error) {
     console.error(error.message);
-    dispatch(setLoading()); // Error de solicitud
+    dispatch(setLoading(false));
   }
 };
-
 export const addUser = (userData) => async (dispatch) => {
   try {
     await axios
