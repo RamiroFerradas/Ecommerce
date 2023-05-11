@@ -15,6 +15,7 @@ export const usersSlice = createSlice({
     setAllUsers: (state, action) => {
       state.allUsers = action.payload;
       state.auxUsers = action.payload;
+      state.loading = false;
     },
     setLoading: (state) => {
       state.loading = true;

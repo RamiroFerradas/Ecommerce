@@ -8,7 +8,7 @@ import Spinner from "../../../components/Spinner";
 
 export default function Users() {
   const dispatch = useDispatch();
-  const { allUsers, isLoading } = useAuthUsers();
+  const { allUsers, loading } = useAuthUsers();
 
   const [viewFormUser, setViewFormUser] = useState(false);
 
@@ -16,7 +16,7 @@ export default function Users() {
     setViewFormUser(false);
   };
 
-  return isLoading ? (
+  return loading ? (
     <Spinner />
   ) : (
     <div className="bg-white shadow overflow-hidden sm:rounded-md">

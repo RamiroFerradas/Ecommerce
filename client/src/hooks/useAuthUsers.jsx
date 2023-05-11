@@ -8,16 +8,20 @@ export default function useAuthUsers() {
   const { isLoading, isAuthenticated, loginWithRedirect, user, logout } =
     useAuth0();
 
-  const { userDb } = useSelector(({ users }) => users);
-  const { allUsers } = useSelector(({ users }) => users);
+  var { userDb, allUsers, loading } = useSelector(({ users }) => users);
+
+  loading = loading || isLoading;
+
   useEffect(() => {
-    if (!isLoading && isAuthenticated) {
+    const existUser = allUsers.some((us) => us.email === user.email);
+
+    if (!isLoading && isAuthenticated && !existUser) {
       dispatch(addUser(user));
     }
-  }, [dispatch, isAuthenticated, isLoading, user]);
+  }, [allUsers, dispatch, isAuthenticated, isLoading, user]);
 
   return {
-    isLoading,
+    loading,
     isAuthenticated,
     loginWithRedirect,
     userDb,
