@@ -4,10 +4,11 @@ import { FiDelete, FiEdit } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { deleteUser, updateUser } from "../../../redux/usersSlice";
 import FormUsers from "./FormUsers";
+import Spinner from "../../../components/Spinner";
 
 export default function Users() {
   const dispatch = useDispatch();
-  const { allUsers } = useAuthUsers();
+  const { allUsers, isLoading } = useAuthUsers();
 
   const [viewFormUser, setViewFormUser] = useState(false);
 
@@ -15,7 +16,9 @@ export default function Users() {
     setViewFormUser(false);
   };
 
-  return (
+  return isLoading ? (
+    <Spinner />
+  ) : (
     <div className="bg-white shadow overflow-hidden sm:rounded-md">
       <ul className="divide-y divide-gray-200">
         {allUsers.map((user) => (
