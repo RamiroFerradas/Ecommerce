@@ -71,9 +71,7 @@ export default function Navbar() {
           </div>
         </div>
         <div
-          className={`md:order-3 flex items-center justify-around flex-row  h-12 w-auto gap-1 order-2 ${
-            loading || !userDb ? `opacity-0 pointer-events-none` : ""
-          }`}
+          className={`md:order-3 flex items-center justify-around flex-row  h-12 w-auto gap-1 order-2 `}
         >
           <CartIcon
             showCartMenu={showCartMenu}
