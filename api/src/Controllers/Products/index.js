@@ -19,7 +19,8 @@ const getProducts = async () => {
       console.log(`Se encontraron ${products.length} productos`);
       return products;
     } else {
-      return "No se encontraron productos";
+      console.error("No se encontraron productos");
+      return [];
     }
   } catch (e) {
     console.error(`${ERROR}, getProducts --→ ${e}`);

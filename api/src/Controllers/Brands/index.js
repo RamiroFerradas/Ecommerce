@@ -9,12 +9,8 @@ const getBrands = async () => {
     const brands = await Brand.findAll({
       order: ["name"],
     });
-    if (brands.length) {
-      console.log(`Se encontraron ${brands.length} marcas`);
-      return brands;
-    } else {
-      return "No se encontraron marcas";
-    }
+    console.log(`Se encontraron ${brands.length} marcas`);
+    return brands;
   } catch (e) {
     console.error(`${ERROR}, getBrands --→ ${e}`);
     return e.message;

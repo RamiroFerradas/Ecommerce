@@ -13,22 +13,15 @@ const router = Router();
 // ---------- GET BRANDS // GET BRANDS BY NAME ----------
 const ERROR = "Error @ routes/Brands/index.js --> ";
 router.get("/", async (req, res) => {
+  console.log("aaaa");
   try {
     const { name } = req.query;
     if (name) {
       const brands = await getBrandsByName(name);
-      if (brands.length) {
-        res.json(brands);
-      } else {
-        res.status(404).send("No se han encontrado marcas.");
-      }
+      res.json(brands);
     } else {
       const brands = await getBrands();
-      if (brands.length) {
-        res.json(brands);
-      } else {
-        res.status(404).send("No se han encontrado marcas.");
-      }
+      res.json(brands);
     }
   } catch (e) {
     console.error(`${ERROR} ${e.message}`);
@@ -41,11 +34,8 @@ router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const brand = await getBrandById(id);
-    if (brand) {
-      res.json(brand);
-    } else {
-      res.status(404).send("No se encontró ninguna marca con ese ID.");
-    }
+
+    res.json(brand);
   } catch (e) {
     console.error(`${ERROR} ${e.message}`);
     return e.message;

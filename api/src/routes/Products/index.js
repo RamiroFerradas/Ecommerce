@@ -23,11 +23,7 @@ router.get("/", async (req, res) => {
       res.json(await getProductsByName(name));
     } else {
       const products = await getProducts();
-      if (products.length) {
-        res.json(products);
-      } else {
-        res.status(404).send("No se han encontrado productos.");
-      }
+      res.json(products);
     }
   } catch (e) {
     console.error(`${ERROR} ${e.message}`);
@@ -42,12 +38,7 @@ router.get("/:id", async (req, res) => {
     const { id } = req.params;
 
     const product = await getProductsById(id);
-
-    if (product) {
-      res.json(product);
-    } else {
-      res.status(404).send("No se encontró ningun producto con ese ID.");
-    }
+    res.json(product);
   } catch (e) {
     console.error(`${ERROR} ${e.message}`);
     return e.message;

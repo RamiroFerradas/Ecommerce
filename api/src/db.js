@@ -36,10 +36,10 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { Brand, Product } = sequelize.models;
 
+
 Product.belongsTo(Brand, { as: "brand", foreignKey: "brandId" });
-
 Brand.hasMany(Product);
-
+//console.log(sequelize);
 module.exports = {
   ...sequelize.models,
   conn: sequelize,

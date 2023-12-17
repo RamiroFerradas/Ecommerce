@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar";
 import { RouterController } from "./routes/RouterController";

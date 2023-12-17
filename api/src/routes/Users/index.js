@@ -27,11 +27,7 @@ router.post("/", authMiddleware, async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const users = await getAllUsers();
-    if (users) {
-      res.json(users);
-    } else {
-      res.status(404).send("No se encontraron usuarios");
-    }
+    res.json(users);
   } catch (e) {
     console.error(`${ERROR} ${e.message}`);
 
@@ -44,11 +40,7 @@ router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const user = await getUserById(id);
-    if (user) {
       res.json(user);
-    } else {
-      res.status(404).send("No se encontró ningún usuario con ese ID.");
-    }
   } catch (e) {
     console.error(`${ERROR} ${e.message}`);
 
